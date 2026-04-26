@@ -1,0 +1,73 @@
+<mvc:View controllerName="showsensordata.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:chart="sap.suite.ui.microchart">
+    <Page title="{i18n>appTitle}">
+        <content>
+            <VBox class="sapUiContentPadding">
+                <HBox>
+                    <Input id="sensorInput" 
+                           placeholder="{i18n>sensorPlaceholder}" 
+                           width="300px"
+                           submit="onSearch"/>
+                    <Button text="{i18n>searchButton}" 
+                            press="onSearch"
+                            width="100px"
+                            />
+                </HBox>
+                
+                <Panel class="sapUiSmallMarginTop" width="100%">
+                    <content>
+                        <VBox height="200px" justifyContent="Center" alignItems="Center">
+                            <!-- <chart:RadialMicroChart id="radialChart"
+                                size="L"
+                                width="200px"
+                                height="200px"
+                               
+                                 
+                               
+                               
+                                valueColor="Neutral"
+                              />  -->
+                        </VBox>
+                    </content>
+                </Panel>
+                
+                <Table id="sensorTable"
+                       items="{sensorData>/Sensor}"
+                       mode="None"
+                       noDataText="{i18n>noDataText}">
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="{i18n=sensorTableTitle}"/>
+                        </Toolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column>
+                            <Text text="{i18n=sensorIdColumn}"/>
+                        </Column>
+                        <Column>
+                            <Text text="{i18n=temperatureColumn}"/>
+                        </Column>
+                        <Column>
+                            <Text text="{i18n=humidityColumn}"/>
+                        </Column>
+                        <Column>
+                            <Text text="{i18n=dateTimeColumn}"/>
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{sensorId}"/>
+                                <Text text="{value1}"/>
+                                <Text text="{value2}"/>
+                                <Text text="{timestamp}"/>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

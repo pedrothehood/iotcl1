@@ -1,0 +1,81 @@
+.sapUiContentPadding {
+    padding: 1rem;
+}
+
+.sapUiSmallMargin {
+    margin: 1rem;
+}
+
+.sapUiSmallMarginBegin {
+    margin-left: 1rem;
+}
+
+.sapUiSmallMarginTop {
+    margin-top: 1rem;
+}
+
+.sapMPage .sapMPageContent {
+    background-color: #8c791c;
+}
+
+.sapMPage .sapMPageHeader {
+    background-color: #a0cc00;
+    color: rgb(85, 43, 43);
+}
+
+.sapMPage .sapMPageHeader .sapMPageHeaderTitle {
+    font-weight: bold;
+}
+
+.sapMPage .sapMPageHeader .sapMPageHeaderTitleText {
+    color: rgb(72, 25, 25);
+}
+
+.sapMPage .sapMPageContent {
+    padding: 1rem;
+}
+
+.sapMPage .sapMPageContent .sapMPageContentVBox {
+    padding: 1rem;
+}
+
+.sapMPage .sapMPageContent .sapMPageContentVBox .sapMHBox {
+    padding-bottom: 1rem;
+}
+
+.sapMPage .sapMPageContent .sapMPageContentVBox .sapMHBox .sapMInput {
+    margin-right: 10px;
+}
+
+.sapMPage .sapMPageContent .sapMPageContentVBox .sapMHBox .sapMButton {
+    margin-left: 10px;
+}
+
+.sapMTable {
+    margin-top: 20px;
+    background-color: rgb(61, 100, 131);
+}
+
+.sapMSplitContainer {
+    margin-top: 20px;
+}
+
+.sapUiResponsiveContentPadding {
+    padding: 1rem;
+}
+
+.sapMPage .sapMPageContent .sapMPageContentVBox .sapMVBox {
+    padding: 1rem;
+}
+
+.sapMPage .sapMPageContent .sapMPageContentVBox .sapMVBox .sapMPageContentVBox {
+    padding: 0;
+}
+
+/* Ensure gauge container shows proper background */
+.sapMVBox.sapMVBoxCenterCenter {
+    background-color: rgb(84, 120, 60);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
