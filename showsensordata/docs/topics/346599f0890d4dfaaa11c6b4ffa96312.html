@@ -1,0 +1,465 @@
+<html><head></head><body><div id="d4h5-main-container" class="dk-main"><section id="loio346599f0890d4dfaaa11c6b4ffa96312" class=" section topic"><div class="section-mdeditlink hidden">
+				<a class="mdeditlink hidden" href="https://github.com/SAP/openui5-docs/blob/main/docs/Component_Instantiation_Guide_346599f.md">Edit on GitHub</a>
+			</div><div class="collapsible-icon sap-icon innerTitle"><h2 class="title ">Component Instantiation Guide</h2></div><div class="fig"><div class="topictitle1 title"><h2 class="title ">Component Instantiation Guide</h2></div><div class="shortdesc">Components serve as the core building blocks of OpenUI5 applications. This
+		guide explains the various ways to instantiate components, when to use each approach, and how to migrate from older mechanisms to modern
+		alternatives.</div><p><span class="emphasis">On this page:</span></p><ul class="ul ">
+				<li class="li"><a href="topic/346599f0890d4dfaaa11c6b4ffa96312.html#loio346599f0890d4dfaaa11c6b4ffa96312/section_OVW" title="346599f0890d4dfaaa11c6b4ffa96312.xml#loio346599f0890d4dfaaa11c6b4ffa96312/section_OVW" class="sap-doc">Overview of Instantiation Mechanisms</a></li>
+				<li class="li"><a href="topic/346599f0890d4dfaaa11c6b4ffa96312.html#loio346599f0890d4dfaaa11c6b4ffa96312/section_COF" title="346599f0890d4dfaaa11c6b4ffa96312.xml#loio346599f0890d4dfaaa11c6b4ffa96312/section_COF" class="sap-doc">Component Factories</a></li>
+				<li class="li"><a href="topic/346599f0890d4dfaaa11c6b4ffa96312.html#loio346599f0890d4dfaaa11c6b4ffa96312/section_INM" title="346599f0890d4dfaaa11c6b4ffa96312.xml#loio346599f0890d4dfaaa11c6b4ffa96312/section_INM" class="sap-doc">Choosing the Right Instantiation Mechanism</a></li>
+				<li class="li"><a href="topic/346599f0890d4dfaaa11c6b4ffa96312.html#loio346599f0890d4dfaaa11c6b4ffa96312/section_INC" title="346599f0890d4dfaaa11c6b4ffa96312.xml#loio346599f0890d4dfaaa11c6b4ffa96312/section_INC" class="sap-doc">Initial Components</a> - How to create the main application component</li>
+				<li class="li"><a href="topic/346599f0890d4dfaaa11c6b4ffa96312.html#loio346599f0890d4dfaaa11c6b4ffa96312/section_NCP" title="346599f0890d4dfaaa11c6b4ffa96312.xml#loio346599f0890d4dfaaa11c6b4ffa96312/section_NCP" class="sap-doc">Nesting Components</a> - How to structure your app into smaller components
+					and nest them</li>
+				<li class="li"><a href="topic/346599f0890d4dfaaa11c6b4ffa96312.html#loio346599f0890d4dfaaa11c6b4ffa96312/section_MIG" title="346599f0890d4dfaaa11c6b4ffa96312.xml#loio346599f0890d4dfaaa11c6b4ffa96312/section_MIG" class="sap-doc">Migration Guidelines</a> - How to migrate your legacy code</li>
+				<li class="li"><a href="topic/346599f0890d4dfaaa11c6b4ffa96312.html#loio346599f0890d4dfaaa11c6b4ffa96312/section_BPR" title="346599f0890d4dfaaa11c6b4ffa96312.xml#loio346599f0890d4dfaaa11c6b4ffa96312/section_BPR" class="sap-doc">Best Practices</a></li>
+			</ul><p></p><section id="section_OVW">
+			<h2 class="title ">Overview of Instantiation Mechanisms</h2>
+			<p>OpenUI5 offers several mechanisms for component instantiation, each suited for
+				different scenarios:</p><ul class="ul ">
+					<li class="li"><span class="emphasis"><code>ComponentSupport</code> Module</span> - A declarative approach for initial application
+						components.</li>
+					<li class="li"><span class="emphasis">Routing with Nested Components</span> - The routing definition allows for navigation-based creation and
+						rendering of <cite>nested</cite> components.</li>
+					<li class="li"><span class="emphasis"><code>Component.create()</code> Factory Function</span> - A modern factory function. This is the recommended
+						approach for programmatic component creation with full application control and responsibility. It requires a
+							<code>ComponentContainer</code> to render.</li>
+					<li class="li"><span class="emphasis"><code>Component#createComponent()</code> Factory Function</span> - The recommended approach to create a
+							<cite>reuse component</cite> defined in an application component's <code>manifest.json</code>. It also requires a
+							<code>ComponentContainer</code> to render.</li>
+					<li class="li"><span class="emphasis"><code>ComponentContainer</code></span> - A container element for rendering components. It can load and
+						instantiate a component and accepts any other programmatically created component, such as those created via
+							<code>Component.create()</code> or <code>Component#createComponent</code>.</li>
+				</ul><p></p>
+		</section><section id="section_COF">
+			<h2 class="title ">Component Factories</h2>
+			<p>OpenUI5 provides two modern component factories:</p><ul class="ul ">
+					<li class="li"><span class="emphasis"><code>Component.create()</code></span></li>
+					<li class="li"><span class="emphasis"><code>Component#createComponent()</code></span></li>
+				</ul>This section outlines the usage of the <code>Component.create()</code> API, as it is the most flexible and versatile way to
+				create a component instance. Keep in mind that the full responsibility for component orchestration and rendering lies with the
+				application.<p></p>
+			<ol>
+				<li class="li">
+					<p><span class="emphasis"><code>Component.create()</code></span></p>
+					<p>The static <code>Component.create()</code> factory allows you to pass the name of a component along with additional options like the URL
+						for a <code>manifest.json</code>. The return value of this factory is a Promise that resolves with the final component
+						instance once it is fully constructed.</p><div class="note   "><div class="collapsible-icon sap-icon"><div class="title"><strong>
+					Note
+				</strong></div></div><div class="fig"><p>For more information on the manifest, see <a href="topic/be0cf40f61184b358b5faedaec98b2da.html#loiobe0cf40f61184b358b5faedaec98b2da/manifirst" title="be0cf40f61184b358b5faedaec98b2da.xml#loiobe0cf40f61184b358b5faedaec98b2da/manifirst" class="sap-doc">Manifest First
+						Function</a>.</p></div></div><section class="lang-js"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">// Basic factory call
+const oBasicComponent = await Component.create({
+    name: "sap.my.component",
+});</pre></div></div></section><p></p>
+					<p>You can also pass a dedicated URL for the <code>manifest.json</code> to the factory function. In this case, the URL must point directly to
+						the <code>manifest.json</code> and must be resolved by the
+						caller:</p><section class="lang-js"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">// Creating a Component with a manifest URL
+const oComponentWithManifestURL = await Component.create({
+    name: "sap.my.component",
+    manifest: "any/location/sap/my/component/manifest.json"
+});</pre></div></div></section><p></p>
+				</li>
+				<li class="li">
+					<p><span class="emphasis"><code>Component#createComponent()</code></span></p>
+					<p>The <code>Component#createComponent()</code> factory is explained below in <a href="topic/346599f0890d4dfaaa11c6b4ffa96312.html#loio346599f0890d4dfaaa11c6b4ffa96312/section_NCP" title="346599f0890d4dfaaa11c6b4ffa96312.xml#loio346599f0890d4dfaaa11c6b4ffa96312/section_NCP" class="sap-doc">Nesting Components</a>.</p>
+				</li>
+			</ol>
+		</section><section id="section_INM">
+			<h2 class="title ">Choosing the Right Instantiation Mechanism</h2>
+			<p>The table below shows the recommended approach for each scenario. We recommend initializing the first application component via the
+					<code>ComponentSupport</code> in the initial HTML page. If needed, you can also create a component programmatically using the
+					<code>Component.create()</code> factory method in combination with a <code>ComponentContainer</code>. All recommended
+				approaches support optimized manifest-first loading.</p><div class="tableWrapper "><div class="fig"><table border="1" id="table_crz_g5r_tr" class="tableFullWidth ">
+						
+						
+						
+						<thead>
+							<tr>
+								<th colspan="1" rowspan="1">
+									<p>Scenario</p>
+								</th>
+								<th colspan="1" rowspan="1">
+									<p>Recommended Approach</p>
+								</th>
+								<th colspan="1" rowspan="1">
+									<p>Reason</p>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="1" rowspan="1">Initial application component</td>
+								<td colspan="1" rowspan="1"><code>ComponentSupport</code></td>
+								<td colspan="1" rowspan="1">Declarative; internally creates a <code>ComponentContainer</code> and automatically loads the referenced
+									component</td>
+							</tr>
+							<tr>
+								<td colspan="1" rowspan="1">Navigation-based component creation</td>
+								<td colspan="1" rowspan="1">Routing definition in <code>manifest.json</code></td>
+								<td colspan="1" rowspan="1">Versatile declarative defintion of navigation targets; allows for seamless nesting of components. This approach
+									is especially important when routing is used within nested components, as it prevents conflicts that could arise
+									when multiple components react to the same browser hash change.</td>
+							</tr>
+							<tr>
+								<td colspan="1" rowspan="1">Nested/reuse components</td>
+								<td colspan="1" rowspan="1"><code>ComponentContainer</code> with <code>usage</code></td>
+								<td colspan="1" rowspan="1">Required for rendering a component; allows for automatic lifecycle management. Nested components can use their
+									own routing to create further nested components (see navigation-based component creation).</td>
+							</tr>
+							<tr>
+								<td colspan="1" rowspan="1">Programmatic <cite>reuse</cite> component creation</td>
+								<td colspan="1" rowspan="1"><code>Component#createComponent()</code></td>
+								<td colspan="1" rowspan="1">Asynchronous factory; allows to manually orchestrate the loading of a nested reuse component defined in the
+									respective component instance's <code>manifest.json</code> (via <code>sap.ui5/componentUsages</code>). The
+									newly created component is automatically marked as owned by its parent component, which allows for additional
+									manifest-driven extensions.</td>
+							</tr>
+							<tr>
+								<td colspan="1" rowspan="1">Programmatic component creation</td>
+								<td colspan="1" rowspan="1"><code> Component.create()</code></td>
+								<td colspan="1" rowspan="1">Asynchronous factory; allows to manually orchestrate the loading</td>
+							</tr>
+						</tbody>
+					</table></div></div><p></p>
+			<p></p><div class="note caution  "><div class="collapsible-icon sap-icon"><div class="title"><strong>
+					Caution
+				</strong></div></div><div class="fig"><p>Do not use deprecated legacy mechanisms! For completeness, we mention the
+					deprecated <code>sap.ui.component()</code> synchronous factory function. <span class="emphasis">We strongly advise against using this
+						function.</span></p></div></div>The modern approaches offers several significant advantages:<ul class="ul ">
+					<li class="li"><span class="emphasis">Asynchronous loading</span> prevents blocking the UI thread.</li>
+					<li class="li"><span class="emphasis">Manifest-first</span> loading optimizes dependency resolution and early model loading and creation.</li>
+					<li class="li"><span class="emphasis">Promise-based</span> APIs allow for manual orchestration and error handling.</li>
+					<li class="li"><span class="emphasis">Future-proof</span>, as synchronous requests are deprecated by all major browsers and are no longer available in
+						legacy-free variants of OpenUI5.</li>
+				</ul><p></p>
+		</section><section id="section_INC">
+			<h2 class="title ">Initial Components</h2>
+			<p>The following sections outline the recommended ways for instantiating the initial application component. For a detailed guide on creating nested
+				components and subdividing your application, see <a href="topic/346599f0890d4dfaaa11c6b4ffa96312.html#loio346599f0890d4dfaaa11c6b4ffa96312/section_NCP" title="346599f0890d4dfaaa11c6b4ffa96312.xml#loio346599f0890d4dfaaa11c6b4ffa96312/section_NCP" class="sap-doc">Nesting
+					Components</a>.</p>
+			<section>
+				<h3 class="title "><code>ComponentSupport</code> - Declarative Approach</h3>
+				<p>The <code>ComponentSupport</code> module enables declarative component instantiation directly in HTML, making it the
+					recommended approach for initial application components.</p>
+				<p><span class="emphasis">Good to know:</span></p><ul class="ul ">
+						<li class="li"><span class="emphasis">HTML is case-insensitive:</span> Properties and settings of a component are defined in camelCase. In HTML, you need to specify
+							them with hyphens, e.g. <code>data-handle-validation</code> for <code>handleValidation</code>.</li>
+						<li class="li"><span class="emphasis">Automatic optimization:</span> The <code>ComponentSupport</code> enforces manifest-first loading and asynchronous behavior
+							by default.</li>
+						<li class="li"><span class="emphasis">Lifecycle management:</span> By default, the lifecycle management is configured to be <code>Container</code>. See <a href="api/sap.ui.core.ComponentLifecycle" title="api/sap.ui.core.ComponentLifecycle" class="sap-doc" alt="api/sap.ui.core.ComponentLifecycle"><code>sap.ui.core.ComponentLifecycle</code></a> and the section about <code>ComponentContainer</code>s
+							below.</li>
+					</ul>For samples regarding the <code>ComponentSupport</code>, see <a href="topic/82a0fcecc3cb427c91469bc537ebdddf" title="The declarative API enables you to define the initially started component directly in the HTML markup." class="sap-doc">Declarative API for Initial Components</a>.<p></p>
+				<p><span class="emphasis">Setup and Usage</span></p>
+				<p>Enable <code>ComponentSupport</code> in your
+					bootstrap:</p><section class="lang-html"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">&lt;!-- index.html --&gt;
+&lt;script id="sap-ui-bootstrap"
+    src="resources/sap-ui-core.js"<span class="emphasis">
+    data-sap-ui-on-init="module:sap/ui/core/ComponentSupport"</span>
+    data-sap-ui-async="true"
+    data-sap-ui-resource-roots='{ "my.app": "./" }'
+    data-...="..."&gt;
+&lt;/script&gt;</pre></div></div></section>You now can declaratively define components directly in HTML using data attributes on a container DOM
+					element (in this sample a <code>&lt;div&gt;</code>
+						element):<section class="lang-html"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">&lt;!-- index.html --&gt;
+&lt;body id="content" class="sapUiBody sapUiSizeCompact" role="application"&gt;
+    &lt;div data-sap-ui-component
+        data-id="myRootComponentContainer"
+        data-name="my.app"
+        data-height="100%"
+        data-settings='{ "id": "myRootComponent" }'
+        data-handle-validation="true"
+        data-...="..."&gt;
+    &lt;/div&gt;
+&lt;/body&gt;</pre></div></div></section>For more information, see the
+							<a href="api/module:sap/ui/core/ComponentSupport" title="api/module:sap/ui/core/ComponentSupport" class="sap-doc" alt="api/module:sap/ui/core/ComponentSupport">API Reference: <code>module:sap/ui/core/ComponentSupport</code></a>.<p></p>
+				<p><span class="emphasis">Advanced Usage</span></p>
+				<p>For scenarios requiring a pre-initialization setup, you can use a dedicated <code>init</code> module and manually load the
+						<code>ComponentSupport</code>. Once loaded, it automatically detects any declarative component definition in the HTML
+					page's DOM (see the sample
+					above).</p><section class="lang-html"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">&lt;script id="sap-ui-bootstrap"
+    data-sap-ui-on-init="module:my/app/startupEfforts"
+    ...&gt;
+&lt;/script&gt;</pre></div></div></section><section class="lang-js"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">// my/app/startupEfforts.js
+sap.ui.define(["my/app/MyModule"], (MyModule) =&gt; {
+    "use strict";
+    // Execute prerequisite code, e.g. loading additional application data, connecting to back-end services, etc.
+    MyModule.init().then(() =&gt;
+        sap.ui.require(["sap/ui/core/ComponentSupport"])
+    );
+});</pre></div></div></section><p></p>
+			</section>
+			<section>
+				<h3 class="title "><code>ComponentContainer</code> - Programmatic Approach</h3>
+				<p>Sometimes you need to programmatically create a component and render it in a specific part of the application or HTML page. For these use
+					cases, we provide a <code>ComponentContainer</code> control, which has a special <code>component</code> association that
+					holds the reference to the component instance.</p><div class="note   "><div class="collapsible-icon sap-icon"><div class="title"><strong>
+					Note
+				</strong></div></div><div class="fig"><p>You cannot use <code>placeAt()</code> directly on
+						components - they must always be wrapped in a <code>ComponentContainer</code>.</p></div></div><code>ComponentContainer</code>s
+					offer several features:<ul class="ul ">
+						<li class="li"><span class="emphasis">Lifecycle management:</span> They forward lifecycle methods (<code>onBeforeRendering</code>,
+								<code>onAfterRendering</code>) to their associated component.</li>
+						<li class="li"><span class="emphasis">Separation:</span> They decouple the control tree and data binding between parent and child components. A
+							component within a <code>ComponentContainer</code> has no parent control. The <code>Component#getParent()</code>
+							function returns <code>null</code>, even though the <code>ComponentContainer</code> itself is aggregated in the
+							control tree.</li>
+						<li class="li"><span class="emphasis">Model propagation:</span> Despite the strict separation mentioned above, setting the
+								<code>propagateModel</code> property to <code>true</code> forwards models and binding contexts to the
+							associated component. By default, a component within a <code>ComponentContainer</code> doesn't participate in the
+							model propagation process.</li>
+						<li class="li"><span class="emphasis">Rendering context:</span> They provide the necessary wrapper for component rendering.</li>
+					</ul><p></p>
+				<p><span class="emphasis">Using <code>ComponentContainer</code>s</span></p>
+				<p><span class="emphasis">Method 1: Container-managed component
+						creation</span></p><section class="lang-js"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">// "ComponentContainer" required from module "sap/ui/core/ComponentContainer"
+var oContainer = new ComponentContainer({
+    name: "samples.components.sample",
+    manifest: true
+});
+oContainer.placeAt("target");</pre></div></div></section><span class="emphasis">Method 2: Pre-created component
+					association</span><section class="lang-js"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">// "Component" required from module "sap/ui/core/Component"
+// "ComponentContainer" required from module "sap/ui/core/ComponentContainer"
+Component.create({
+    name: "samples.components.sample",
+}).then(function(oComponent) {
+    // Note: the Component instance (oComponent) is only associated in the ComponentContainer, not aggregated!
+    var oContainer = new ComponentContainer({
+        component: oComponent
+    });
+    oContainer.placeAt("target");
+});</pre></div></div></section><p></p>
+				<p><span class="emphasis">Lifecycle Management</span></p>
+				<p>The <code>ComponentContainer</code> lets you define a <code>lifecycle</code> of a component and how it aligns with the lifecylce of the
+						container. For more information, see the <a href="api/sap.ui.core.ComponentLifecycle" title="api/sap.ui.core.ComponentLifecycle" class="sap-doc" alt="api/sap.ui.core.ComponentLifecycle">API
+							Reference: <code>sap.ui.core.ComponentLifecycle</code></a>.</p><div class="note   "><div class="collapsible-icon sap-icon"><div class="title"><strong>
+					Note
+				</strong></div></div><div class="fig"><p>The default is
+							<code>sap.ui.core.ComponentLifecycle.Legacy</code>.</p></div></div><section class="lang-js"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">// "ComponentContainer" required from module "sap/ui/core/ComponentContainer"
+// "coreLibrary" required from module "sap/ui/core/library"
+var oContainer = new ComponentContainer({
+    name: "samples.components.sample",
+    lifecycle: coreLibrary.ComponentLifecycle.Container,
+    manifest: true
+});</pre></div></div></section><p></p>
+			</section>
+		</section><section id="section_NCP">
+			<h2 class="title ">Nesting Components</h2>
+			<p>Nesting components lets you subdivide your application into smaller, independent parts. Each part has its own dedicated set of dependencies and
+				resources. For example, in a shop application that displays a list of products, the editing functionality should only be visible to
+				administrators. It doesn't need to be loaded for other users. Nested components help you decouple this functionality. This approach
+				reduces the initial payload needed to start your main component, improving application startup performance and resource
+				utilization.</p>
+			<p>You can nest components in these ways:</p><ul class="ul ">
+					<li class="li"><a href="topic/346599f0890d4dfaaa11c6b4ffa96312.html#loio346599f0890d4dfaaa11c6b4ffa96312/RWNC" title="346599f0890d4dfaaa11c6b4ffa96312.xml#loio346599f0890d4dfaaa11c6b4ffa96312/RWNC" class="sap-doc">Routing with Nested Components</a>: You can implement this with
+						targets of <code>Component</code> type. This method is recommended for most use cases. Use it when nested components have
+						routing enabled. It's crucial when routing is used within nested components, as it prevents conflicts that could arise when
+						multiple components react to the same browser hash change.</li>
+					<li class="li"><a href="topic/346599f0890d4dfaaa11c6b4ffa96312.html#loio346599f0890d4dfaaa11c6b4ffa96312/PI" title="346599f0890d4dfaaa11c6b4ffa96312.xml#loio346599f0890d4dfaaa11c6b4ffa96312/PI" class="sap-doc">Programmatic Instantiation</a>: You can achieve this by declaring
+						your component in the <code>sap.ui5/componentUsages</code> section of your parent component's
+							<code>manifest.json</code> and creating it using a factory function.</li>
+				</ul><p></p>
+			<section>
+				<h3 class="title ">Manifest Configuration</h3>
+				<p>Before configuring nested components via routing or instantiating them programmatically, declare them in the
+						<code>sap.ui5/componentUsages</code> section of your parent component's
+					<code>manifest.json</code>:</p><section class="lang-json"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">{
+    "sap.ui5": {
+        "componentUsages": {
+            "myreuse": {
+                "name": "sap.reuse.component",
+                "settings": {},
+                "componentData": {},
+                "lazy": false
+            }
+        }
+    }
+}</pre></div></div></section><p></p>
+				<p><span class="emphasis">Configuration Options:</span></p><ul class="ul ">
+						<li class="li"><span class="emphasis"><code>name</code>:</span> Component identifier (mandatory)</li>
+						<li class="li"><span class="emphasis"><code>settings</code>:</span> Component-specific settings</li>
+						<li class="li"><span class="emphasis"><code>componentData</code>:</span> Data passed to the component's constructor</li>
+						<li class="li"><span class="emphasis"><code>lazy</code>:</span> Controls the preloading behavior (<code>false</code> = preload, <code>true</code> = load
+							on demand)</li>
+					</ul><p></p>
+			</section>
+			<section id="RWNC">
+				<h3 class="title ">Routing With Nested Components</h3>
+				<p>Nesting components with target-based navigation is the recommended way to achieve a separation of concerns. This approach is especially
+					important when routing is used within nested components, as it prevents conflicts that could arise when multiple components react
+					to the same browser hash change.</p>
+				<p>Using routing with nested components requires:</p><ul class="ul ">
+						<li class="li"><span class="emphasis">Asynchronous routing</span> enabled in all components</li>
+						<li class="li"><span class="emphasis">Component target</span> configuration in the parent routing</li>
+						<li class="li"><span class="emphasis">Proper <code>componentUsages</code></span> declaration</li>
+					</ul>For more information, see <a href="topic/fb19f501b16e4e4991eb6a017770945b" title="Every OpenUI5 component can define routing configuration in its manifest and a UI5 router instance will be created automatically after the component is instantiated." class="sap-doc">Enabling Routing in Nested Components</a>.<p></p>
+				<p><span class="emphasis">Routing Configuration (<code>manifest.json</code>):</span></p><ul class="ul ">
+						<li class="li"><span class="emphasis"><code>type: "Component"</code>:</span> Indicates that the framework's routing should instantiate a component</li>
+						<li class="li"><span class="emphasis"><code>usage</code>:</span> References the key from <code>componentUsages</code> in the
+								<code>manifest.json</code></li>
+						<li class="li"><span class="emphasis"><code>options</code>:</span> Additional options for the component. This object merges with the corresponding object from
+							the <code>componentUsages</code> section of the <code>manifest.json</code>.</li>
+						<li class="li"><span class="emphasis"><code>containerOptions</code>:</span> Additional options passed to the
+								<code>ComponentContainer</code>'s constructor</li>
+					</ul><div class="note   "><div class="collapsible-icon sap-icon"><div class="title"><strong>
+					Note
+				</strong></div></div><div class="fig"><p>
+						</p><p>The routing configuration also provides a <code>"View"</code> target type.</p>
+						<p>When multiple components have their own routing configuration, their individual routers coordinate hash access to prevent
+							conflicts. This allows for sub-routing and ensures deterministic navigation across the component hierarchy.</p>
+						<p>For more information, see <a href="topic/902313063d6f45aeaa3388cc4c13c34e" title="Routing configuration consists of routes, targets, config, and owner." class="sap-doc">Routing Configuration</a>.</p>
+					<p></p></div></div><section class="lang-json"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">{
+    "sap.ui5": {
+        "componentUsages": {
+            "myreuse": {
+                "name": "reuse.component",
+                "lazy": false
+            }
+        },
+        "routing": {
+            "config": {
+                "async": true
+            },
+            "routes": [{
+                "name": "componentRoute",
+                "pattern": "component",
+                "target": "componentTarget"
+            }],
+            "targets": {
+                "componentTarget": {
+                    "type": "Component",
+                    "usage": "myreuse",
+                    "options": {
+                        // Additional component options
+                    },
+                    "containerOptions": {
+                        // ComponentContainer options
+                    }
+                }
+            }
+        }
+    }
+}</pre></div></div></section><p></p>
+			</section>
+			<section id="PI">
+				<h3 class="title ">Programmatic Instantiation</h3>
+				<p>In certain scenarios, programmatic component instantiation is required, such as opening a dialog component when a user performs a specific
+					action. The <code>Component</code> class provides a factory function to asynchronously create reuse components that are
+					declared in the manifest. While this approach requires additional application code, it offers greater control and flexibility,
+					allowing you to precisely orchestrate the loading and instantiation of nested components.</p>
+				<p><span class="emphasis">Simplified
+					usage:</span></p><section class="lang-js"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">const oComponent = await this.createComponent("myreuse");</pre></div></div></section><p></p>
+				<p><span class="emphasis">Extended
+					usage:</span></p><section class="lang-js"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">const oComponent = await this.createComponent({
+    usage: "myreuse",
+    settings: {},
+    componentData: {}
+});</pre></div></div></section><p></p>
+				<p><span class="emphasis">Adding the component to the control tree:</span></p>
+				<p>To add your newly created component into the control tree, you need to associate it with a
+					<code>ComponentContainer</code>:</p><section class="lang-js"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">// associate the component in a ComponentContainer
+const oContainer = new ComponentContainer({
+    component: oComponent
+});
+// and place it into the control tree
+myView.addContent(oContainer);</pre></div></div></section><p></p>
+				<p><span class="emphasis"><code>ComponentContainer</code> with owner component:</span></p>
+				<p>Instead of calling the <a href="api/sap.ui.core.Component#methods/createComponent" title="api/sap.ui.core.Component#methods/createComponent" class="sap-doc" alt="api/sap.ui.core.Component#methods/createComponent"><code>Component#createComponent</code></a> factory on a component instance, you can directly create a
+						<code>ComponentContainer</code> and reference the reuse component via its name declared in the
+						<code>manifest.json</code>.</p>
+				<p>This approach <span class="emphasis">only works</span> if you ensure that the <code>ComponentContainer</code> is instantiated within the
+					"owner scope" of the component defining the <code>componentUsage</code>.  For more information, see <a href="topic/a7a313889e874a118c5e17803c958b24" title="If you wish to extend your view or controller, you must define the extension in the manifest.json of their owner component." class="sap-doc">The Owner Component</a>.</p>
+				<p>For more information, see the <code>usage</code> options outlined in
+					the <a href="api/sap.ui.core.ComponentContainer#controlProperties" title="api/sap.ui.core.ComponentContainer#controlProperties" class="sap-doc" alt="api/sap.ui.core.ComponentContainer#controlProperties">API
+						Reference for <code>ComponentContainer</code></a> and the <a href="api/sap.ui.core.Component#methods/runAsOwner" title="api/sap.ui.core.Component#methods/runAsOwner" class="sap-doc" alt="api/sap.ui.core.Component#methods/runAsOwner">API Reference for
+							<code>Component#runAsOwner</code></a> used in the example below.</p>
+				<p>
+					</p><section class="lang-js"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">// Ensure that the ComponentContainer is created in the correct owner scope!
+oMyAppComponent.runAsOwner(() =&gt; {
+    const oContainer = new ComponentContainer({
+        usage: "myreuse"
+    })
+    oContainer.placeAt("target");
+})</pre></div></div></section>
+				<p></p>
+			</section>
+			<section>
+				<h3 class="title ">Declarative Usage in XML Views</h3>
+				<p>To declaratively create a component from within an XML view, simply place it in the XML
+						DOM:</p><section class="language-xml"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">&lt;mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" ...&gt;
+    &lt;core:ComponentContainer usage="myreuse" manifest="true" /&gt;
+&lt;/mvc:View&gt;</pre></div></div></section><div class="note   "><div class="collapsible-icon sap-icon"><div class="title"><strong>
+					Note
+				</strong></div></div><div class="fig"><p>Depending on how you create the XML view, you may need to ensure that
+						the <cite>owner scope</cite> is correctly set. For more information, see <a href="topic/a7a313889e874a118c5e17803c958b24" title="If you wish to extend your view or controller, you must define the extension in the manifest.json of their owner component." class="sap-doc">The Owner Component</a>.</p></div></div>If your view is created programmatically and not via a routing target, you need to wrap the view's factory call in a
+					corresponding <a href="api/sap.ui.core.Component#methods/runAsOwner" title="api/sap.ui.core.Component#methods/runAsOwner" class="sap-doc" alt="api/sap.ui.core.Component#methods/runAsOwner"><code>Component#runAsOwner</code></a>
+					call:<section class="language-js"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">oMyAppComponent.runAsOwner(() =&gt; {
+    const oMyView = await XMLView.create(...);
+    // add the view to the control tree
+});</pre></div></div></section><p></p>
+			</section>
+		</section><section id="section_MIG">
+			<h2 class="title ">Migration Guidelines</h2>
+			<p>The OpenUI5 framework is continuously evolving to leverage modern web standards and
+				browser capabilities while maintaining backward compatibility. To keep your applications performant, secure, and future-ready,
+				migrating from legacy component APIs to modern alternatives is essential.</p><div class="note   "><div class="collapsible-icon sap-icon"><div class="title"><strong>
+					Note
+				</strong></div></div><div class="fig"><p>For comprehensive guidance on
+					modernizing your codebase, see <a href="topic/28fcd55b04654977b63dacbee0552712" title="This page is a good starting point for you to ensure your code bases, specifically your OpenUI5 applications and libraries, are ready for the future and won't become outdated." class="sap-doc">Best Practices for Developers</a>, which provides detailed recommendations for
+					legacy-free OpenUI5 development.</p></div></div><p></p>
+			<section>
+				<h3 class="title ">Legacy <code>sap.ui.component()</code> Factory</h3>
+				<p>The legacy <code>sap.ui.component()</code> factory function creates components synchronously, which blocks the UI thread and violates
+					Content Security Policy requirements. Migrating to asynchronous alternatives is essential for modern OpenUI5 development.</p>
+				<p><span class="emphasis">Legacy approach:</span></p><section class="lang-js"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">createContent: function() {
+    var oReuseComponent = sap.ui.component({
+        "name": "sap.reuse.component"
+    });
+}</pre></div></div></section><p></p>
+				<p><span class="emphasis">Modern approach:</span></p><section class="lang-js"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">createContent: function() {
+    var oReuseComponentPromise = this.createComponent({
+        "usage": "reuse"
+    });
+}</pre></div></div></section><p></p>
+			</section>
+			<section>
+				<h3 class="title ">Legacy Component Dependencies</h3>
+				<p><span class="emphasis">Legacy definition in manifest.json:</span></p><section class="lang-json"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">{
+    "sap.ui5": {
+        "dependencies": {
+            "components": {
+                "sap.reuse.component": {}
+            }
+        }
+    }
+}</pre></div></div></section><p></p>
+				<p><span class="emphasis">Modern definition in manifest.json:</span></p><section class="lang-json"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">{
+    "sap.ui5": {
+        "componentUsages": {
+            "reuse": {
+                "name": "sap.reuse.component",
+                "lazy": false
+            }
+        }
+    }
+}</pre></div></div></section><p></p>
+			</section>
+		</section><section id="section_BPR">
+			<h2 class="title ">Best Practices</h2>
+			<ol>
+				<li class="li"><span class="emphasis">Always use asynchronous APIs</span> - use <code>Component.create()</code> instead of
+					<code>sap.ui.component()</code>.</li>
+				<li class="li"><span class="emphasis">Prefer <code>ComponentSupport</code></span> for initial components over manual <code>ComponentContainer</code>
+					creation.</li>
+				<li class="li"><span class="emphasis">Declare reuse components</span> in <code>componentUsages</code> rather than in <code>dependencies</code>.</li>
+				<li class="li"><span class="emphasis">Enable async routing</span> in all components when using nested component routing.</li>
+				<li class="li"><span class="emphasis">Use routing with nested components</span> for nested components that define their own routing.</li>
+				<li class="li"><span class="emphasis">Use proper lifecycle management</span> via the <code>ComponentContainer</code>'s <code>lifecycle</code> property.</li>
+				<li class="li"><span class="emphasis">Leverage manifest-first</span> loading for optimal performance.</li>
+			</ol>
+		</section><section class="contentInSection hidden"><h2>In this section:</h2></section><section class="familyLinks"><div class="parentLink hidden"><br><strong>Parent topic: </strong></div><div class="previousLink hidden"><br><strong>Previous: </strong></div><div class="nextLink hidden"><br><strong>Next: </strong></div></section><section class="relatedLinks "><div class="collapsible-icon sap-icon title"><h2>Related information</h2></div><ul class="fig">
+		<li><a href="topic/82a0fcecc3cb427c91469bc537ebdddf" title="The declarative API enables you to define the initially started component directly in the HTML markup." class="sap-doc">Declarative API for Initial Components</a></li>
+		<li><a href="topic/fb19f501b16e4e4991eb6a017770945b" title="Every OpenUI5 component can define routing configuration in its manifest and a UI5 router instance will be created automatically after the component is instantiated." class="sap-doc">Enabling Routing in Nested Components</a></li>
+		<li><a href="topic/8521ad1955f340f9a6207d615c88d7fd" title="Description of the performance-relevant attributes that are available for the descriptor for applications, components and libraries" class="sap-doc">Descriptor Dependencies to Libraries and Components</a></li>
+		<li><a href="topic/a7a313889e874a118c5e17803c958b24" title="If you wish to extend your view or controller, you must define the extension in the manifest.json of their owner component." class="sap-doc">The Owner Component</a></li>
+		<li><a href="api/sap.ui.core.Component" title="api/sap.ui.core.Component" class="sap-doc" alt="api/sap.ui.core.Component">API Reference: sap.ui.core.Component</a></li>
+		<li><a href="api/sap.ui.core.ComponentContainer" title="api/sap.ui.core.ComponentContainer" class="sap-doc" alt="api/sap.ui.core.ComponentContainer">API Reference: sap.ui.core.ComponentContainer</a></li>
+		<li><a href="api/module:sap/ui/core/ComponentSupport" title="api/module:sap/ui/core/ComponentSupport" class="sap-doc" alt="api/module:sap/ui/core/ComponentSupport">API Reference: ComponentSupport</a></li>
+	</ul></section></div></section></div></body></html>

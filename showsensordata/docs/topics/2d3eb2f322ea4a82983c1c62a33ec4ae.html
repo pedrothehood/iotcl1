@@ -1,0 +1,117 @@
+<html><head></head><body><div id="d4h5-main-container" class="dk-main"><section id="loio2d3eb2f322ea4a82983c1c62a33ec4ae" class=" section topic"><div class="section-mdeditlink hidden">
+				<a class="mdeditlink hidden" href="https://github.com/SAP/openui5-docs/blob/main/docs/Variant_for_Bootstrapping_from_Content_Delivery_Network_2d3eb2f.md">Edit on GitHub</a>
+			</div><div class="collapsible-icon sap-icon innerTitle"><h2 class="title ">Variant for
+            Bootstrapping from Content Delivery Network</h2></div><div class="fig"><div class="topictitle1 title"><h2 class="title ">Variant for
+            Bootstrapping from Content Delivery Network</h2></div><div class="shortdesc">OpenUI5 can either be
+            loaded locally with a relative path from a Web server or externally from a Content
+            Delivery Network (CDN).
+    </div><div class="note   "><div class="collapsible-icon sap-icon"><div class="title"><strong>
+					Note
+				</strong></div></div><div class="fig"><p>
+            </p><p>Loading OpenUI5 from a
+                CDN improves your app performance: You can load from a server that (in most cases)
+                is much closer to your location, and you can benefit from the caching mechanism and
+                the language fallback logic.</p>
+            
+            
+            
+        <p></p></div></div><section id="section_CDN"><h2 class="title ">Bootstrapping From OpenUI5 CDN</h2><p>
+                </p><div class="note   "><div class="collapsible-icon sap-icon"><div class="title"><strong>
+					Note
+				</strong></div></div><div class="fig"><p>
+                    </p><p>To ensure outdated versions no longer pose a potential security risk, SAP removes OpenUI5 versions from the OpenUI5 CDN one
+                        year after their end of maintenance. Also patches of versions in maintenance which are older than one year will be removed.
+                        For more information, see <a href="https://blogs.sap.com/2021/01/26/removing-outdated-ui5-versions-from-ui5-cdn/" title="https://blogs.sap.com/2021/01/26/removing-outdated-ui5-versions-from-ui5-cdn/" class="external-link" target="_blank" rel="noopener">this blog
+                            post</a>. The end dates for the cloud provisioning of OpenUI5 versions and patches can be found at <a href="https://sdk.openui5.org/versionoverview.html" title="https://sdk.openui5.org/versionoverview.html" class="sap-doc">https://sdk.openui5.org/versionoverview.html</a></p>
+                <p></p></div></div>
+            <p></p><section>
+                <h3 class="title ">Specific Version</h3>
+                <p>The specific version allows you to select a particular fixed version for bootstrapping. You can refer to a specific version by
+                    using a versioned URL as in the following example:</p><section class="lang-html"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">&lt;script id="sap-ui-bootstrap"
+    src="https://sdk.openui5.org/<span class="emphasis">1.136.8</span>/resources/sap-ui-core.js"
+    data-sap-ui-async="true"
+    data-...="..."&gt;
+&lt;/script&gt;</pre></div></div></section><p></p>
+                <p>The first segment of the URL after the host name is used to specify a concrete version, which needs to be provided in the following
+                    form: <cite><code>&lt;majorVersion&gt;.&lt;minorVersion&gt;.&lt;patchNumber&gt;</code></cite>. For more information, see <a href="topic/91f021426f4d1014b6dd926db0e91070" title="Versioning and maintenance strategy for OpenUI5." class="sap-doc">Versioning and Maintenance of OpenUI5</a>.</p>
+                
+                <p>Check the available versions with the respective maintenance status at <a href="https://sdk.openui5.org/versionoverview.html" title="https://sdk.openui5.org/versionoverview.html" class="sap-doc">https://sdk.openui5.org/versionoverview.html</a>. </p>
+                <div class="note   "><div class="collapsible-icon sap-icon"><div class="title"><strong>
+					Note
+				</strong></div></div><div class="fig"><p>
+                    </p><p>Only use the <span class="ph uicontrol">Stable</span> version for productive apps. Nevertheless, if you also want to test the <a href="https://openui5nightly.hana.ondemand.com" title="https://openui5nightly.hana.ondemand.com" class="external-link" target="_blank" rel="noopener"><span class="ph uicontrol">Nightly</span></a>
+                        version, you are very welcome to send us your feedback!</p>
+                <p></p></div></div>
+            </section><section>
+                <h3 class="title ">Evergreen Version</h3>
+                <p>The evergreen version allows you to automatically select the latest available patch level of a specific (minor) long-term
+                    maintenance version for bootstrapping. You refer to a particular
+                        <cite><code>&lt;majorVersion&gt;.&lt;minorVersion&gt;</code></cite> long-term maintenance version using a versioned URL as
+                    in the following example:</p><section class="lang-html"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">&lt;head&gt;
+    &lt;!-- ... --&gt;
+    &lt;script id="sap-ui-bootstrap"
+        src="https://sdk.openui5.org/<span class="emphasis">1.120</span>/resources/sap-ui-core.js"
+        <span class="emphasis">data-sap-ui-async="true"</span>
+        <span class="emphasis">data-sap-ui-on-init="module:sap/ui/core/ComponentSupport"</span>
+        data-sap-ui-resource-roots='{ "my.app": "./" }'
+        data-sap-ui-compat-version="edge"&gt;
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body id="content" class="sapUiBody"&gt;
+    &lt;div data-sap-ui-component
+        data-id="myComponentContainer"
+        data-name="my.app"
+        data-height="100%"
+        data-settings='{ "id": "myComponent" }'
+        data-...="..."&gt;
+    &lt;/div&gt;
+&lt;/body&gt;</pre></div></div></section><p></p>
+                <p>The first segment of the URL after the host name is used to specify an evergreen version, which needs to be provided in the
+                    following version number combination: <cite><code>&lt;majorVersion&gt;.&lt;minorVersion&gt;</code></cite> without a patch
+                    number. For more information, see <a href="topic/91f021426f4d1014b6dd926db0e91070" title="Versioning and maintenance strategy for OpenUI5." class="sap-doc">Versioning and Maintenance of OpenUI5</a>. All long-term maintenance versions &gt;=
+                    1.71 can be used as evergreen versions to bootstrap OpenUI5
+                    applications. You can find the available versions with long-term
+                        maintenance status at <a href="https://sdk.openui5.org/versionoverview.html" title="https://sdk.openui5.org/versionoverview.html" class="sap-doc">https://sdk.openui5.org/versionoverview.html</a>. </p>
+                <p>When using the patch-level independent bootstrap you must use <code>data-sap-ui-async="true"</code> and the <code>data-sap-ui-on-init</code> callback. Ideally, you refer
+                    to a module, for example <code>sap/ui/core/ComponentSupport</code> to bootstrap your Component; see <a href="topic/82a0fcecc3cb427c91469bc537ebdddf" title="The declarative API enables you to define the initially started component directly in the HTML markup." class="sap-doc">Declarative API for Initial Components</a>. You can also refer to a custom module.</p>
+                <div class="note   "><div class="collapsible-icon sap-icon"><div class="title"><strong>
+					Note
+				</strong></div></div><div class="fig"><p>
+                    </p><p>Evergreen versions only support asynchronous bootstrapping. Therefore, the
+                                <code>data-sap-ui-async</code> bootstrap attribute must be set to <code>true</code>. </p>
+                    <p>A consequence of asynchronous bootstrapping is that <code>sap-ui-debug=true</code> does not work when you bootstrap an
+                        evergreen version. You need to explicitly include the namespace of the modules you want to see the debug sources for, for
+                        example by specifying <code>sap-ui-debug=sap/</code> to include the <code>sap/*</code> namespace, or
+                            <code>sap-ui-debug=sap/,xyz/app/</code> to include more than one namespace. For more information, see the blog post
+                            <a href="https://blogs.sap.com/2022/04/14/sapui5-patch-level-independent-bootstrap/" title="https://blogs.sap.com/2022/04/14/sapui5-patch-level-independent-bootstrap/" class="external-link" target="_blank" rel="noopener">SAPUI5 – Patch-Level Independent Bootstrap</a>.</p>
+                <p></p></div></div>
+            </section><section>
+                <h3 class="title ">Default Version</h3>
+                
+                <p>The default version of our libraries has the generic URL
+                        <code>https://sdk.openui5.org/resources/sap-ui-core.js</code> (OpenUI5).</p>
+                <div class="note caution  "><div class="collapsible-icon sap-icon"><div class="title"><strong>
+					Caution
+				</strong></div></div><div class="fig"><p>
+                    </p><p>The default version is constantly being upgraded and this might have an impact on the stability of your application. Use this
+                        version for testing purposes only.</p>
+                <p></p></div></div>
+            </section><section>
+                <h3 class="title ">Cache Control</h3>
+                <p>The cache control is different for dynamic and static resources. If you refer to the latest maintenance version (dynamic), you have
+                    a maximum cache age of one week, if you refer to a specific (static) version, you have a maximum cache age of 10 years. In both
+                    cases, cross-origin resource sharing (CORS) headers are set, so that you can consume resources from the central location without
+                    any proxy in between.</p>
+                <div class="note   "><div class="collapsible-icon sap-icon"><div class="title"><strong>
+					Note
+				</strong></div></div><div class="fig"><p>
+                    </p><p>The Cache Buster is only needed if you consume OpenUI5 without a
+                        concrete version in the URL. When you consume OpenUI5 with the
+                        concrete version in the URL, this is not needed, as the content served by that unique URLs will never change and can be cached
+                        forever.</p>
+                <p></p></div></div>
+            </section></section><section class="contentInSection hidden"><h2>In this section:</h2></section><section class="familyLinks"><div class="parentLink hidden"><br><strong>Parent topic: </strong></div><div class="previousLink hidden"><br><strong>Previous: </strong></div><div class="nextLink hidden"><br><strong>Next: </strong></div></section><section class="relatedLinks "><div class="collapsible-icon sap-icon title"><h2>Related information</h2></div><ul class="fig">
+        <li><a href="https://blogs.sap.com/2015/07/30/multi-version-availability-of-sapui5" title="https://blogs.sap.com/2015/07/30/multi-version-availability-of-sapui5" class="external-link" target="_blank" rel="noopener">Multi-Version Availability of SAPUI5</a></li>
+        <li><a href="https://blogs.sap.com/2021/08/17/set-up-a-cdn-for-sapui5-on-your-on-premise-sap-abap-server/" title="https://blogs.sap.com/2021/08/17/set-up-a-cdn-for-sapui5-on-your-on-premise-sap-abap-server/" class="external-link" target="_blank" rel="noopener">Set Up a CDN for SAPUI5 on Your On-Premise SAP ABAP Server</a></li>
+        <li><a href="topic/91f021426f4d1014b6dd926db0e91070" title="Versioning and maintenance strategy for OpenUI5." class="sap-doc">Versioning and Maintenance of OpenUI5</a></li>
+    </ul></section></div></section></div></body></html>

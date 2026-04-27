@@ -1,0 +1,47 @@
+<html><head></head><body><div id="d4h5-main-container" class="dk-main"><section id="loiob3422ec53888461d9c47ef0e809ff3f1" class=" section topic"><div class="section-mdeditlink hidden">
+				<a class="mdeditlink hidden" href="https://github.com/SAP/openui5-docs/blob/main/docs/Handling_of_Temporarily_Unavailable_Back_Ends_b3422ec.md">Edit on GitHub</a>
+			</div><div class="collapsible-icon sap-icon innerTitle"><h2 class="title ">Handling of Temporarily Unavailable Back Ends</h2></div><div class="fig"><div class="topictitle1 title"><h2 class="title ">Handling of Temporarily Unavailable Back Ends</h2></div><div class="shortdesc">An OData back end cannot process incoming requests while it is under maintenance. Instead, it can respond with an HTTP 503 status code
+		(Service Unavailable) and a "Retry-After" header.</div><p>For this scenario, OpenUI5 offers the <a href="api/sap.ui.model.odata.v4.ODataModel#methods/setRetryAfterHandler" title="api/sap.ui.model.odata.v4.ODataModel#methods/setRetryAfterHandler" class="sap-doc" alt="api/sap.ui.model.odata.v4.ODataModel#methods/setRetryAfterHandler"><code>v4.ODataModel#setRetryAfterHandler</code></a> API, by which an application can set a handler to determine when requests should be repeated
+			and how the app should behave in the meantime.</p><p>All requests which are sent after a model's initialisation and the registration of the handler via the
+				<code>ODataModel#setRetryAfterHandler</code> API are supported by this feature.</p><section id="section_uqy_yc1_q2c">
+			<h2 class="title ">Implementing the Handler</h2>
+			<p>The <code>ODataModel#setRetryAfterHandler</code> API expects a function as parameter, which receives an error object with the following properties:</p><ul class="ul ">
+					<li class="li"><code>retryAfter</code> - The "Retry-After" value as a JavaScript <code>Date</code> instance. This property determines
+						the point in time when the back end is presumed to be available again.</li>
+					<li class="li"><code>message</code> - The error response body in plain text, e.g. "<code>503 Service Not Available DB migration in
+							progress 2024-06-03 11:53:53</code>".</li>
+				</ul><p></p>
+			<p>The handler must return a Promise which controls when the request is to be repeated. In the Promise constructor, an application can decide what
+				to do while it is waiting for the given timespan to pass. By resolving the Promise, the application initiates the repetition of the
+				request.</p>
+			<p>If the promise is rejected, the request will not be repeated. In this case, the given error object is passed to the reject function, and the
+				error message is propagated to the <a href="api/sap.ui.model.message.MessageModel" title="api/sap.ui.model.message.MessageModel" class="sap-doc" alt="api/sap.ui.model.message.MessageModel"><code>MessageModel</code></a>.</p>
+				<div class="note other example "><div class="collapsible-icon sap-icon"><div class="title"><strong>
+					Example
+				</strong></div></div><div class="fig"><p><code>#retryAfter</code>
+				handler</p><section class="lang-js"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">this.getView().getModel().setRetryAfterHandler((oError) =&gt; {
+    const iNow = new Date().getTime();
+    const iEnd = oError.retryAfter.getTime();
+    const iRetryAfterMilliSeconds = iEnd - iNow;
+ 
+    // Lock UI and show dialog with a progress bar here
+         
+    return new Promise((fnResolve, fnReject) =&gt; {               
+        setTimeout(() =&gt; {          
+            fnResolve();
+            // Close the previously shown dialog here
+        }, iRetryAfterMilliSeconds);
+    });
+});</pre></div></div></section><p></p></div></div>
+			<p>In the above example, the application calculates a time at which it will retry the request.</p>
+			<p>The returned Promise is resolved after the calculated time, which results in the repetition of the request which received the 503 response.
+				Additionally, failed requests which were sent in parallel to the first one are queued for repetition, too. The UI should be locked
+				during the retry process, for example by using a dialog with a progress bar.</p>
+			<p>In case multiple models are available for the same back end, the application is responsible for ensuring that all handlers registered for the
+				different models use the same Promise.</p>
+			<div class="note caution  "><div class="collapsible-icon sap-icon"><div class="title"><strong>
+					Caution
+				</strong></div></div><div class="fig"><p>Overwriting a callback handler set by libraries</p><p>If your application was developed in an environment in
+					which libraries register a callback handler, the application should not use the <code>ODataModel#setRetryAfterHandler</code>
+					API to overwrite the set handler.</p><p></p></div></div>
+		</section><section class="contentInSection hidden"><h2>In this section:</h2></section><section class="familyLinks"><div class="parentLink hidden"><br><strong>Parent topic: </strong></div><div class="previousLink hidden"><br><strong>Previous: </strong></div><div class="nextLink hidden"><br><strong>Next: </strong></div></section><section class="hidden relatedLinks "><div class="collapsible-icon sap-icon title"><h2>Related information</h2></div><ul class="fig"></ul></section></div></section></div></body></html>

@@ -1,0 +1,68 @@
+<html><head></head><body><div id="d4h5-main-container" class="dk-main"><section id="loioecbc417ff264498b96bc364c53280242" class=" section topic"><div class="section-mdeditlink hidden">
+				<a class="mdeditlink hidden" href="https://github.com/SAP/openui5-docs/blob/main/docs/Advanced_Concepts_for_OpenUI5_Components_ecbc417.md">Edit on GitHub</a>
+			</div><div class="collapsible-icon sap-icon innerTitle"><h2 class="title ">Advanced Concepts for OpenUI5
+		Components</h2></div><div class="fig"><div class="topictitle1 title"><h2 class="title ">Advanced Concepts for OpenUI5
+		Components</h2></div><div class="shortdesc">Advanced concepts for components include routing and navigation and component data as
+		well as the event bus.</div><p>The following advanced concepts for components exist.</p><ul class="ul ">
+			<li class="li">
+				<p>Asynchronous content creation</p>
+				<p> A <code>UIComponent</code> can implement the <code>sap.ui.core.IAsyncContentCreation</code> interface. This interface allows you to
+					provide a Promise as the return value for the 
+						<a href="api/sap.ui.core.UIComponent#methods/createContent" title="api/sap.ui.core.UIComponent#methods/createContent" class="sap-doc" alt="api/sap.ui.core.UIComponent#methods/createContent"><code>sap.ui.core.UIComponent#createContent</code></a> function.</p>
+				<p>For more information, see <a href="topic/b430345887f1419fba50320b57c1bdf9" title="OpenUI5 provides two methods for the initial instantiation of the component." class="sap-doc">Methods Controlling the Initial Instantiation</a>.</p>
+			</li>
+			<li class="li">
+				<p>Routing and navigation</p>
+				<p>UI components support the routing and navigation concept, see <a href="topic/acdb6cd408ec4b9eb5e1fe45e607abdd" title="This topic describes how to initialize routing in a component and access the routing functions." class="sap-doc">Initializing and Accessing a Routing Instance</a>.</p>
+			</li>
+			<li class="li">
+				<p>Extensibility and customizing</p>
+				<p>The extensibility and customizing concept allows you to extend and modify
+					components in order to replace and extend the views and controllers as well as
+					to modify the views. A customization can be performed, for example, on a custom
+					application that extends a delivered standard application.</p>
+				<p>For more information, see <a href="topic/a264a9abf98d4caabbf9b027bc1005d8" title="You can adapt an OpenUI5 app to your specific requirements. For example, you can adapt or replace views, extend or replace controllers, or change language-specific texts." class="sap-doc">Extending Apps</a></p>
+			</li>
+			<li class="li">
+				<p>Owner Component concept</p>
+				<p>Closely related to extensibility and customizing is the concept of the <cite>Owner Component</cite>. The owner component is the
+						<code>sap.ui.core.(UI)Component</code> instance that created and therefore "owns" any
+						<code>sap.ui.base.ManagedObject</code> instance, including OpenUI5 controls, views, fragments, and other components. The
+					framework uses the owner component to identify extension points, view modifications, and controller extensions defined in the
+					owner component's <code>manifest.json</code>, enabling views, fragments, and controllers to be extended through their owner
+					component's configuration.</p>
+				<p>For more information, see <a href="topic/a7a313889e874a118c5e17803c958b24" title="If you wish to extend your view or controller, you must define the extension in the manifest.json of their owner component." class="sap-doc">The Owner Component</a>.</p>
+			</li>
+			<li class="li">
+				<p>Component data</p>
+				<p>Component data is an optional object that contains application-specific initial data passed to a component during instantiation. This data is
+					provided from outside the component and made available during the component's initialization phase. The component data can be
+					accessed throughout the component lifecycle using the <code>Component#getComponentData()</code> method. The content of the
+					component data itself is not part of the OpenUI5 framework's offering;
+					however, other layers of the SAP UI technology stack may provide content via the component data, for example the SAP Fiori
+					launchpad's <a href="https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/a7b390faab1140c087b8926571e942b7/079561b716bb4f2f8ae4e47bacbdb86d.html" title="https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/a7b390faab1140c087b8926571e942b7/079561b716bb4f2f8ae4e47bacbdb86d.html" class="external-link" target="_blank" rel="noopener"><code>startupParameters</code></a>.</p>
+				<p>Component data is typically used to pass configuration values, startup parameters, or contextual information that the component needs to
+					function properly. It differs from a static configuration in that it can vary between different instantiations of the same
+					component.</p>
+				<p>For more information, see the <a href="api/sap.ui.core.Component#methods/getComponentData" title="api/sap.ui.core.Component#methods/getComponentData" class="sap-doc" alt="api/sap.ui.core.Component#methods/getComponentData">API Reference for <code>sap.ui.core.Component#getComponentData</code></a>.</p>
+			</li>
+			<li class="li">
+				<p>Component creation mechanisms</p>
+				<p>OpenUI5 provides several mechanisms for component instantiation, each suited for
+					different scenarios. The main approaches include <code>ComponentSupport</code> for declarative creation,
+						<code>Component.create()</code> for programmatic instantiation, routing-based creation for nested components, and
+						<code>ComponentContainer</code> for rendering components in the control tree. Each mechanism offers specific advantages
+					for different use cases, such as initial application startup, nested component creation, or dynamic component loading.</p>
+				<p>For more information, see our <a href="topic/346599f0890d4dfaaa11c6b4ffa96312" title="Components serve as the core building blocks of OpenUI5 applications. This guide explains the various ways to instantiate components, when to use each approach, and how to migrate from older mechanisms to modern alternatives." class="sap-doc">Component Instantiation Guide</a>.</p>
+			</li>
+			<li class="li">
+				<p>Event bus of the component</p>
+				<p>The local event bus belongs to the component and can be used by all children of
+					this component. Once a component instance is destroyed, the listeners registered
+					in the event bus are destroyed automatically. For more
+						information, see <a href="api/sap.ui.core.Component#methods/getEventBus" title="api/sap.ui.core.Component#methods/getEventBus" class="sap-doc" alt="api/sap.ui.core.Component#methods/getEventBus">API Reference for the
+								<code>getEventBus</code> method of
+								<code>sap.ui.core.Component</code></a>.
+					</p>
+			</li>
+		</ul><section class="contentInSection hidden"><h2>In this section:</h2></section><section class="familyLinks"><div class="parentLink hidden"><br><strong>Parent topic: </strong></div><div class="previousLink hidden"><br><strong>Previous: </strong></div><div class="nextLink hidden"><br><strong>Next: </strong></div></section><section class="hidden relatedLinks "><div class="collapsible-icon sap-icon title"><h2>Related information</h2></div><ul class="fig"></ul></section></div></section></div></body></html>

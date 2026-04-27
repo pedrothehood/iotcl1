@@ -1,0 +1,105 @@
+<html><head></head><body><div id="d4h5-main-container" class="dk-main"><section id="loio6e340c119ddd4c778b315f65a0432420" class=" section topic"><div class="section-mdeditlink hidden">
+				<a class="mdeditlink hidden" href="https://github.com/SAP/openui5-docs/blob/main/docs/Object_Page_Header_6e340c1.md">Edit on GitHub</a>
+			</div><div class="collapsible-icon sap-icon innerTitle"><h2 class="title ">Object Page Header</h2></div><div class="fig"><div class="topictitle1 title"><h2 class="title ">Object Page Header</h2></div><div class="shortdesc">Overview of the structure and features for
+		<code>sap.uxap.ObjectPageLayout</code>'s dynamic header.</div><p>The <code>sap.uxap.ObjectPage</code>'s dynamic header is flexible and provides
+			general-purpose aggregations that allow you to build a custom header layout.</p><p>It consists of two parts - Header Title and Header Content.</p><div><div class="fig"><img src="loio329ff57b73e54ddca241e9ff693cd6c8_LowRes.png" usemap="#"></div></div><p>The upper part of the Header Title is reserved for <code>breadcrumbs</code>
+			navigation. The opposite side of this upper area is occupied by the
+				<code>navigationActions</code> after a certain breakpoint.</p><div><div class="fig"><img src="loio9c7316d399364bb5935a38ea8113aa22_LowRes.png" usemap="#"></div><span class="collapsible-icon sap-icon figcap title"><h2 class="title ">Breadcrumbs and Actions in the Header Title</h2></span></div><p>The Header Title area can be clicked/tapped to expand/collapse the dynamic header.
+			Whenever the feature is enabled (<code>toggleHeaderOnTitleClick</code> is set to
+				<code>true</code>), an arrow button is positioned either below the Header
+			Content (when header is expanded) or below the Header Title (when header is collapsed).
+			The expand/collapsed state of the header can be toggled by either clicking on the Header
+			Title area, or the arrow button.</p><p>When hovering over the arrow button or the Header Title area, both areas are highlighted
+			indicating to the user that an action can be taken.</p><div><div class="fig"><img src="loioe70b5adf9f60403d8b7b8aa5c9b1d972_LowRes.gif" usemap="#"></div><span class="collapsible-icon sap-icon figcap title"><h2 class="title ">Expanding/Collapsing the Header Using Arrow Button and Title Click</h2></span></div><p>The Header Content can be pinnable (<code>headerContentPinnable</code> is set to
+				<code>true</code>). When the feature is enabled, a pin toggle button is
+			available allowing the header content to remain expanded when scrolling the page.</p><div><div class="fig"><img src="loioc959daa0867e4f209788cad289881dd4_LowRes.gif" usemap="#"></div><span class="collapsible-icon sap-icon figcap title"><h2 class="title ">Pinning the Header to Remain Expanded when Scrolling the Page</h2></span></div><section id="section_cht_tws_sbb">
+			<h2 class="title ">Header Title</h2>
+			<p>To implement the dynamic header, the app developer needs to provide an instance of
+				the <code>sap.uxap.ObjectPageDynamicHeaderTitle</code> control for the
+					<code>headerTitle</code> aggregation of the
+					<code>sap.uxap.ObjectPageLayout</code> control.</p>
+			<p>The <code>sap.uxap.ObjectPageDynamicHeaderTitle</code> extends
+					<code>sap.f.DynamicPageTitle</code>. It can hold any control and displays
+				the most important information regarding the object that will always remain visible
+				when scrolling.</p>
+		</section><section id="section_z5r_q1t_sbb">
+			<h2 class="title ">Header Content</h2>
+			<p>To populate the header content area, provide an array of desired controls to the
+					<code>headerContent</code> aggregation of the
+					<code>sap.uxap.ObjectPageLayout</code> control.
+					<code>sap.uxap.ObjectPageLayout</code> uses internally
+					<code>sap.uxap.ObjectPageDynamicHeaderContent</code> to layout the
+				controls.</p>
+		</section><section id="section_q23_hsy_dfc">
+			<h2 class="title ">Header Features</h2>
+			<div class="tableWrapper "><div class="title"><h2 class="title ">Overview of the header features (all being <code>ObjectPageLayout</code>
+					properties):</h2></div><div class="fig"><table border="1" class=" ">
+					
+					
+					<thead>
+						<tr>
+							<th colspan="1" rowspan="1">
+								<p>Feature</p>
+							</th>
+							<th colspan="1" rowspan="1">
+								<p>Description</p>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="1" rowspan="1">
+								<p><code>headerContentPinnable</code></p>
+							</td>
+							<td colspan="1" rowspan="1">
+								<p>Determines whether the Header Content area can be pinned.</p>
+								<p>When set to true, a pin button is displayed within the Header
+									Content area. The pin button allows the user to make the Header
+									Content always visible at the top of the page above any
+									scrollable content.</p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="1" rowspan="1">
+								<p><code>toggleHeaderOnTitleClick</code></p>
+							</td>
+							<td colspan="1" rowspan="1">
+								<p>Determines whether the user can switch between the
+									expanded/collapsed states of the dynamic header by
+									clicking/tapping on the Header Title. If set to
+										<code>false</code>, the Header Title is not clickable
+									and the app must provide other means for expanding/collapsing
+									the dynamic header, if necessary.</p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="1" rowspan="1">
+								<p><code>preserveHeaderStateOnScroll</code></p>
+							</td>
+							<td colspan="1" rowspan="1">
+								<p>Preserves the current header state when scrolling. For example,
+									if the user expands the header by clicking on the title and then
+									scrolls down the page, the header will remain expanded.</p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="1" rowspan="1">
+								<p><code>toggleHeaderOnTitleClick</code></p>
+							</td>
+							<td colspan="1" rowspan="1">
+								<p>When the feature is enabled, arrow buttons below the Header
+									Content appear, the Header Title and the arrow buttons can be
+									clicked/tapped for collapsing/expanding the header and there is
+									additional visual indication while hovering over the Header
+									Title area or the arrow buttons.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table></div></div>
+		</section><section class="contentInSection hidden"><h2>In this section:</h2></section><section class="familyLinks"><div class="parentLink hidden"><br><strong>Parent topic: </strong></div><div class="previousLink hidden"><br><strong>Previous: </strong></div><div class="nextLink hidden"><br><strong>Next: </strong></div></section><section class="relatedLinks "><div class="collapsible-icon sap-icon title"><h2>Related information</h2></div><ul class="fig">
+		<li><a href="api/sap.uxap.ObjectPageDynamicHeaderTitle" title="api/sap.uxap.ObjectPageDynamicHeaderTitle" class="sap-doc" alt="api/sap.uxap.ObjectPageDynamicHeaderTitle"> is
+				intended for experimentation only is intended for experimentation
+				onlyAPI Reference:
+					sap.uxap.ObjectPageDynamicHeaderTitle</a></li>
+		<li><a href="api/sap.uxap.ObjectPageLayout" title="api/sap.uxap.ObjectPageLayout" class="sap-doc" alt="api/sap.uxap.ObjectPageLayout">API Reference: sap.uxap.ObjectPageLayout</a></li>
+	</ul></section></div></section></div></body></html>

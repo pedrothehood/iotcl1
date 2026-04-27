@@ -1,0 +1,94 @@
+<html><head></head><body><div id="d4h5-main-container" class="dk-main"><section id="loio91f021426f4d1014b6dd926db0e91070" class=" section topic"><div class="section-mdeditlink hidden">
+				<a class="mdeditlink hidden" href="https://github.com/SAP/openui5-docs/blob/main/docs/Versioning_and_Maintenance_of_OpenUI5_91f0214.md">Edit on GitHub</a>
+			</div><div class="collapsible-icon sap-icon innerTitle"><h2 class="title ">Versioning and Maintenance of OpenUI5</h2></div><div class="fig"><div class="topictitle1 title"><h2 class="title ">Versioning and Maintenance of OpenUI5</h2></div><div class="shortdesc"> Versioning and maintenance strategy for OpenUI5.</div><section id="section_DC50B59D56AC4B52A2DBEFADFA4B0E98">
+			<h2 class="title ">Version Designation</h2>
+			<p>OpenUI5 uses a three-number version identifier, for example, 1.71.22. The numbers
+				have the following meaning: </p>
+			<ul class="ul ">
+				<li class="li">The first part (1) specifies the release number (major version).</li>
+				<li class="li">The second part (71) specifies the version number (minor version).</li>
+				<li class="li">The third part (22) specifies the patch number.</li>
+			</ul>
+			<p>To view the documentation for a specific version, check at <a href="https://sdk.openui5.org/versionoverview.html" title="https://sdk.openui5.org/versionoverview.html" class="sap-doc">https://sdk.openui5.org/versionoverview.html</a> which
+				versions are available. You can view the version-specific Demo Kit by adding the version number to the URL, for example, <code>https://sdk.openui5.org/1.71.22/</code> .</p>
+			<p>To get an overview of the new features of each version, see <a href="topic/99ac68a5b1c3416ab5c84c99fefa250d" title="Find out what's new in the latest versions of OpenUI5." class="sap-doc">What's New in OpenUI5</a>. To see the fixes contained in
+				each patch, check the 
+					<a href="https://sdk.openui5.org/releasenotes.html" title="https://sdk.openui5.org/releasenotes.html" class="external-link" target="_blank" rel="noopener">Change Log</a>.</p>
+		</section><section id="section_qnr_ghw_ffc">
+			<h2 class="title ">Maintenance Strategy</h2>
+			<p>Every month, OpenUI5 releases a new version for productive usage. Support periods
+				vary by release type:</p>
+			<div class="tableWrapper "><div class="fig"><table border="1" id="table_zjl_4fd_p1b" class=" ">
+					
+					
+					
+					<thead>
+						<tr>
+							<th colspan="1" rowspan="1">Release Type</th>
+							<th colspan="1" rowspan="1">Support Period</th>
+							<th colspan="1" rowspan="1">Typical Release Cycle</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="1" rowspan="1" align="left" valign="top">Standard</td>
+							<td colspan="1" rowspan="1" align="left" valign="top">6 weeks</td>
+							<td colspan="1" rowspan="1" align="left" valign="top">Monthly</td>
+						</tr>
+						<tr>
+							<td colspan="1" rowspan="1" align="left" valign="top">Mid-Term Support (MTS)</td>
+							<td colspan="1" rowspan="1" align="left" valign="top">9 months</td>
+							<td colspan="1" rowspan="1" align="left" valign="top">Anually (6 months after LTS release)</td>
+						</tr>
+						<tr>
+							<td colspan="1" rowspan="1" align="left" valign="top">Long-Term Support (LTS)</td>
+							<td colspan="1" rowspan="1" align="left" valign="top">15 months</td>
+							<td colspan="1" rowspan="1" align="left" valign="top">Anually</td>
+						</tr>
+					</tbody>
+				</table></div></div>
+			<p>The release strategy follows the principle of "one innovation code line": Subsequent versions ensure continuous innovation with an evolving code
+				line. All OpenUI5 versions receive critical security fixes until the version’s end of life (EOL) date.</p>
+			<p>Mid-term and long-term maintenance releases also receive bug fixes until their end of maintenance (EOM) date (for standard releases, bug fixes
+				are included in the next OpenUI5 version). After the EOM date, only critical security patches are offered for a year, after which
+				these versions reach their EOL date.</p>
+			<p>Whenever a new patch for a version is released, the older patch becomes outdated. One year after becoming outdated, it enters End of
+				Cloud Provisioning (EOCP) and is removed from the Akamai content delivery network (CDN) at the start of the following quarter.</p>
+			<p>In the version overview at <a href="https://sdk.openui5.org/versionoverview.html" title="https://sdk.openui5.org/versionoverview.html" class="sap-doc">https://sdk.openui5.org/versionoverview.html</a>, you can
+				find information on the maintenance status of all available OpenUI5 versions and the EOCP dates for each patch version.</p>
+		</section><section>
+			<h2 class="title ">Availability of Multiple Versions on the Akamai Content Delivery Network</h2>
+			<p>OpenUI5 resources are
+				available on the Akamai content delivery network. There, you can also find multiple
+					OpenUI5 versions, and you can use them in your code as described in <a href="topic/2d3eb2f322ea4a82983c1c62a33ec4ae" title="OpenUI5 can either be loaded locally with a relative path from a Web server or externally from a Content Delivery Network (CDN)." class="sap-doc">Variant for Bootstrapping from Content Delivery Network</a>.</p>
+			<p>Check the available versions with respective maintenance status at <a href="https://sdk.openui5.org/versionoverview.html" title="https://sdk.openui5.org/versionoverview.html" class="sap-doc">https://sdk.openui5.org/versionoverview.html</a>.</p>
+		</section><section id="section_b1g_xcw_dz">
+			<h2 class="title ">OpenUI5 Version</h2>
+			<p>You can find which framework versions you use in your app in the <a href="topic/616a3ef07f554e20a3adf749c11f64e9.html#loio616a3ef07f554e20a3adf749c11f64e9" title="The Technical Information dialog shows details of the OpenUI5 version currently being used in an app built with OpenUI5. You can use the Technical Information dialog to enable debug resources and open additional support tools to debug your app." class="sap-doc">Technical Information Dialog</a> (<span class="keys">
+					<span class="keyWrap"><kbd class="key">Ctrl</kbd></span>
+					<span class="keyWrap"><kbd class="key">Shift</kbd></span>
+				<span class="keyWrap"><kbd class="key">Left Alt / Left Option</kbd></span>
+				<span class="keyWrap"><kbd class="key">P</kbd></span>
+				</span>.</p>
+			<p>To access the OpenUI5 version at runtime, you can use the following
+				code:</p><section class="lang-js"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">sap.ui.require([
+    "sap/ui/VersionInfo",
+    "sap/base/util/Version"
+], (VersionInfo, VersionUtil) =&gt; {
+    VersionInfo.load().then(oCurrentVersionInfo =&gt; {
+    const oOpenUI5Version = new VersionUtil(oCurrentVersionInfo.version);
+        // ...
+    });
+});</pre></div></div></section><p></p>
+			
+			
+			<p>
+				</p><div class="note   "><div class="collapsible-icon sap-icon"><div class="title"><strong>
+					Note
+				</strong></div></div><div class="fig"><p>
+					</p><p>Standalone apps, e.g. apps using the <code>self-contained</code> build of <a href="https://sap.github.io/ui5-tooling" title="https://sap.github.io/ui5-tooling" class="external-link" target="_blank" rel="noopener">UI5 Tooling</a>, will report the version of the app itself.
+						Only if the framework resources are provided by a content delivery network (CDN) or a similar shared installation will the
+						main version of the framework be retrieved as shown above.</p>
+				<p></p></div></div>
+			<p></p>
+		</section><section class="contentInSection hidden"><h2>In this section:</h2></section><section class="familyLinks"><div class="parentLink hidden"><br><strong>Parent topic: </strong></div><div class="previousLink hidden"><br><strong>Previous: </strong></div><div class="nextLink hidden"><br><strong>Next: </strong></div></section><section class="hidden relatedLinks "><div class="collapsible-icon sap-icon title"><h2>Related information</h2></div><ul class="fig"></ul></section></div></section></div></body></html>

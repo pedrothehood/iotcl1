@@ -1,0 +1,129 @@
+<html><head></head><body><div id="d4h5-main-container" class="dk-main"><section id="loio74b59efa0eef48988d3b716bd0ecc933" class=" section topic"><div class="section-mdeditlink hidden">
+				<a class="mdeditlink hidden" href="https://github.com/SAP/openui5-docs/blob/main/docs/Browser_and_Platform_Support_74b59ef.md">Edit on GitHub</a>
+			</div><div class="collapsible-icon sap-icon innerTitle"><h2 class="title ">Browser and Platform Support</h2></div><div class="fig"><div class="topictitle1 title"><h2 class="title ">Browser and Platform Support</h2></div><div class="shortdesc">Supported browsers and platforms for the OpenUI5 libraries.</div><section>
+			<p>Generally, OpenUI5 does not support browsers or platforms that are no longer under
+				general support by their respective vendors. Nevertheless, OpenUI5 may function on
+				browser and platform combinations outside the officially supported scope.</p>
+		</section><section id="section_bgw_kns_hnb">
+			<h2 class="title ">Browser
+				Support</h2>
+			<p>The following tables provide details on supported browsers and platforms.</p>
+			<div class="tableWrapper "><div class="title"><h2 class="title ">Supported Desktop Browsers and Operating Systems</h2></div><div class="fig"><table border="1" id="table_zjl_4fd_p1b" class=" ">
+					
+					
+					
+					
+					
+					<thead>
+						<tr>
+							<th colspan="1" rowspan="1">Desktop</th>
+							<th colspan="1" rowspan="1">Google Chrome</th>
+							<th colspan="1" rowspan="1">Microsoft Edge</th>
+							<th colspan="1" rowspan="1">Mozilla Firefox</th>
+							<th colspan="1" rowspan="1">Apple Safari</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="1" rowspan="1" align="left" valign="top"><span class="emphasis">Windows</span> (Version 11)</td>
+							<td colspan="1" rowspan="1" align="center" valign="top">Latest stable version</td>
+							<td colspan="1" rowspan="1" align="center" valign="top">Latest stable version</td>
+							<td colspan="1" rowspan="1" align="center" valign="top">Latest release and latest ESR</td>
+							<td colspan="1" rowspan="1" align="center" valign="top">n/a</td>
+						</tr>
+						<tr>
+							<td colspan="1" rowspan="1" align="left" valign="top"><span class="emphasis">macOS</span> (Latest 2 major versions)</td>
+							<td colspan="1" rowspan="1" align="center" valign="top">Latest stable version</td>
+							<td colspan="1" rowspan="1" align="center" valign="top">Latest stable version</td>
+							<td colspan="1" rowspan="1" align="center" valign="top">-</td>
+							<td colspan="1" rowspan="1" align="center" valign="top">Latest version</td>
+						</tr>
+					</tbody>
+				</table></div></div>
+			<div class="tableWrapper "><div class="title"><h2 class="title ">Supported Mobile Browsers and Operating Systems</h2></div><div class="fig"><table border="1" class=" ">
+					
+					
+					
+					<thead>
+						<tr>
+							<th colspan="1" rowspan="1">Mobile</th>
+							<th colspan="1" rowspan="1">Google Chrome</th>
+							<th colspan="1" rowspan="1">Apple Safari</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="1" rowspan="1" align="left" valign="top"><span class="emphasis">iOS & iPadOS</span> (Latest
+								version)</td>
+							<td colspan="1" rowspan="1" align="center" valign="top">-</td>
+							<td colspan="1" rowspan="1" align="center" valign="top">Latest version</td>
+						</tr>
+						<tr>
+							<td colspan="1" rowspan="1" align="left" valign="top"><span class="emphasis">Android</span> (Latest 3 major versions
+								supported by Google)</td>
+							<td colspan="1" rowspan="1" align="center" valign="top">Latest stable version</td>
+							<td colspan="1" rowspan="1" align="center" valign="top">n/a</td>
+						</tr>
+					</tbody>
+				</table></div></div>
+		</section><section>
+			<h2 class="title ">Additional Information</h2>
+			<ul class="ul ">
+				<li class="li">Windows 10 support ended on October 14, 2025. Although OpenUI5 is expected
+					to continue running on Windows 10, upgrade to Windows 11 is strongly
+					recommended.</li>
+				<li class="li">Touch input on Windows is supported, subject to the restrictions listed
+					below.</li>
+				<li class="li">For Firefox, ESR stands for Extended Support Release.</li>
+				
+				<li class="li">Support is provided for the latest WebView on Windows and iPadOS/iOS. Certain
+					features may be limited compared to regular browsers.</li>
+				<li class="li">
+					
+					<p>If personal or organizational tracking prevention
+						settings (for example, in Microsoft Edge) are too strict, loading OpenUI5
+						from hostnames ending in hana.ondemand.com may be blocked. To prevent this,
+						load OpenUI5 from https://sdk.openui5.org/.</p>
+				</li>
+			</ul>
+		</section><section>
+			<h2 class="title ">Known Issues</h2>
+			<p>Additional restrictions apply to specific OpenUI5 libraries as
+				listed below:</p><ul class="ul ">
+					<li class="li"><code>sap.sac.df</code>, <code>sap.ui.commons</code>, and
+							<code>sap.ui.ux3</code> libraries do not support touch input on
+						Windows.</li>
+					<li class="li"><code>sap.sac.df</code>, <code>sap.ui.commons</code>, and
+							<code>sap.ui.ux3</code> libraries are not supported on mobile
+						devices.</li>
+					<li class="li"><code>sap.ui.commons</code> and <code>sap.ui.ux3</code> are not
+						supported in Google Chrome or Microsoft Edge on macOS.</li>
+					<li class="li"><a href="topic/f08f29636be1472dac8f35fe7918ee08" title="Depending on the combination of device and browser, visual degradations may occur in certain libraries." class="sap-doc">Visual Degradations</a> may occur for certain
+						combinations of browsers and platforms.</li>
+				</ul><p></p>
+		</section><section>
+			<h2 class="title ">ECMAScript Support</h2>
+			<p>OpenUI5 leverages modern
+				ECMAScript, HTML5, and CSS3. Certain restrictions apply for the usage of ECMAScript
+				by OpenUI5 applications.
+				For more information, see <a href="topic/0cb44d7a147640a0890cefa5fd7c7f8e" title="Consider certain restrictions when using modern ECMAScript with your OpenUI5 project." class="sap-doc">ECMAScript Support</a>.</p>
+		</section><section>
+			<h2 class="title ">Supported Environments</h2>
+			<ul class="ul ">
+				<li class="li">For Windows, the specified browsers are also supported in virtual environments,
+					such as Citrix and VMware. However, any issues found must be reproducible in a
+					non-virtualized environment. </li>
+				<li class="li">Current Apple iPhone, iPad, Samsung Galaxy S phone and Galaxy Tab S Android
+					devices are used for testing and reproducing issues.</li>
+			</ul>
+		</section><section>
+			<div class="note   "><div class="collapsible-icon sap-icon"><div class="title"><strong>
+					Note
+				</strong></div></div><div class="fig"><p>
+				</p><p>Browsers are constantly evolving across various platforms. Browser upgrades may
+					introduce changes that are not backward compatible and can affect the behavior
+					of OpenUI5. SAP
+					doesn't provide any warranty regarding the features or qualities of these
+					browsers.</p>
+			<p></p></div></div>
+		</section><section class="contentInSection"><h2>In this section:</h2><ul><li><a href="topic/f08f29636be1472dac8f35fe7918ee08">Visual Degradations</a></li><li><a href="topic/154844c3ac2a4675a37aeb6259a5e034">Keyboard Shortcuts for OpenUI5 Tools</a></li></ul></section><section class="familyLinks"><div class="parentLink hidden"><br><strong>Parent topic: </strong></div><div class="previousLink hidden"><br><strong>Previous: </strong></div><div class="nextLink hidden"><br><strong>Next: </strong></div></section><section class="hidden relatedLinks "><div class="collapsible-icon sap-icon title"><h2>Related information</h2></div><ul class="fig"></ul></section></div></section></div></body></html>

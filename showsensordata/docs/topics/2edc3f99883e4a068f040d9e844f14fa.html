@@ -1,0 +1,10 @@
+<html><head></head><body><div id="d4h5-main-container" class="dk-main"><section id="loio2edc3f99883e4a068f040d9e844f14fa" class=" section topic"><div class="section-mdeditlink hidden">
+				<a class="mdeditlink hidden" href="https://github.com/SAP/openui5-docs/blob/main/docs/Localized_Texts_for_Extended_Apps_2edc3f9.md">Edit on GitHub</a>
+			</div><div class="collapsible-icon sap-icon innerTitle"><h2 class="title ">Localized Texts for Extended Apps</h2></div><div class="fig"><div class="topictitle1 title"><h2 class="title ">Localized Texts for Extended Apps</h2></div><div class="shortdesc">You can add custom localized text files that contain additional texts or texts that
+		overwrite the original texts to the <code>sap.ui.model.resource.ResourceModel</code>
+	</div><p>The enhanced resource model tries to resolve the localized texts from the custom resource
+			bundle first. If a text does not exist there, it tries to look up the text in the
+			resource bundle of the original app. Custom resource bundles cannot be added by standard
+			extension configuration, but must be added as part of a controller extension as shown in
+			the following example:</p><section class="lang-js"><div class="fig fig-codeblock"><div class="copyButton"><span style="display: none;">Hidden</span></div><div class="codeblock-wrapper"><pre class="codeblock">var oModel = new sap.ui.model.resource.ResourceModel({bundleUrl:"./testdata/messages.properties"});
+oModel.enhance({bundleUrl:"./testdata/messages_custom.properties"});</pre></div></div></section><section class="contentInSection hidden"><h2>In this section:</h2></section><section class="familyLinks"><div class="parentLink hidden"><br><strong>Parent topic: </strong></div><div class="previousLink hidden"><br><strong>Previous: </strong></div><div class="nextLink hidden"><br><strong>Next: </strong></div></section><section class="hidden relatedLinks "><div class="collapsible-icon sap-icon title"><h2>Related information</h2></div><ul class="fig"></ul></section></div></section></div></body></html>
