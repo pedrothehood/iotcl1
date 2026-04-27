@@ -27,7 +27,7 @@ view/View1.view.xml
 Component.js
 manifest.json
 
-Erstelle eine openui5-Applikation
+Erstelle eine openui5-Applikation, die Sensordaten ausliest.
 
 Erstellen eines openui5-programmes, welches Sensordaten ausliest und als Gauge darstellt. Das Gauge soll in verschiedenen Farben und sanften Farbübergängen die Temperatur betonen, und zwar die zuletzt gemessene Temperatur (reading_time max).
 Gauge-Anzeige: Eine kreisförmige Gauge, die die aktuelle Temperatur darstellt (Farbe ändert sich je nach Temperatur).
