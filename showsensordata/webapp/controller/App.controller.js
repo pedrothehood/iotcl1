@@ -4,9 +4,11 @@ sap.ui.define([
     "use strict";
 
     return Controller.extend("showsensordata.controller.App", {
-        
+        /**
+         * @override
+         */
         onInit: function () {
-            
+            this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
         }
     });
 });

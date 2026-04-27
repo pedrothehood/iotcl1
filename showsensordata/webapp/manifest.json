@@ -1,47 +1,59 @@
 {
-    "sap.app": {
-        "id": "showsensordata",
-        "type": "application",
-        "title": "Sensor Data App",
-        "description": "Display sensor data with radial chart",
-        "applicationVersion": {
-            "version": "1.0.0"
-        }
-    },
-    "sap.ui": {
-        "technology": "UI5",
-        "deviceTypes": {
-            "desktop": true,
-            "tablet": true,
-            "phone": true
-        }
-    },
-    "sap.ui5": {
-        "rootView": {
-            "viewName": "showsensordata.view.View1",
-            "type": "XML"
-        },
-        "dependencies": {
-            "minUI5Version": "1.96.0",
-            "libs": {
-                "sap.m": {},
-                "sap.suite.ui.microchart": {}
-            }
-        },
-        "models": {
-            "i18n": {
-                "type": "sap.ui.model.resource.ResourceModel",
-                "settings": {
-                    "bundleName": "showsensordata.i18n.i18n"
-                }
-            }
-        },
-        "resources": {
-        "css": [
-            {
-                "uri": "css/style.css"
-            }
-        ]
+  "_version": "1.32.0",
+  "sap.app": {
+    "id": "showsensordata",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "applicationVersion": {
+      "version": "1.0.0"
     }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
     }
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "showsensordata.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    },
+    "dependencies": {
+      "minUI5Version": "1.90.0",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.suite.ui.microchart": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "showsensordata.i18n.i18n"
+        }
+      },
+      "sensorData": {
+        "type": "sap.ui.model.json.JSONModel"
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    }
+  }
 }

@@ -1,13 +1,9 @@
-<mvc:View controllerName="showsensordata.controller.App"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+<mvc:View
+    controllerName="showsensordata.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
     xmlns="sap.m">
-    <App id="app">
-        <pages>
-            <Page id="page" title="{i18n>appTitle}">
-                <content>
-                    <mvc:XMLView viewName="showsensordata.view.View1"/>
-                </content>
-            </Page>
-        </pages>
-    </App>
+    <Shell id="shell">
+        <App id="idAppControl" />
+    </Shell>
 </mvc:View>

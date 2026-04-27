@@ -1,68 +1,54 @@
-<mvc:View controllerName="showsensordata.controller.View1"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+<mvc:View
+    controllerName="showsensordata.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:chart="sap.suite.ui.microchart">
-    <Page title="{i18n>appTitle}">
+    xmlns:mc="sap.suite.ui.microchart"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>appTitle}">
         <content>
-            <VBox class="sapUiContentPadding">
-                <HBox>
-                    <Input id="sensorInput" 
-                           placeholder="{i18n>sensorPlaceholder}" 
-                           width="300px"
-                           submit="onSearch"/>
-                    <Button text="{i18n>searchButton}" 
-                            press="onSearch"
-                            width="100px"
-                            />
-                </HBox>
-                
-                <Panel class="sapUiSmallMarginTop" width="100%">
-                    <content>
-                        <VBox height="200px" justifyContent="Center" alignItems="Center">
-                            <!-- <chart:RadialMicroChart id="radialChart"
-                                size="L"
-                                width="200px"
-                                height="200px"
-                               
-                                 
-                               
-                               
-                                valueColor="Neutral"
-                              />  -->
-                        </VBox>
-                    </content>
-                </Panel>
-                
-                <Table id="sensorTable"
-                       items="{sensorData>/Sensor}"
-                       mode="None"
-                       noDataText="{i18n>noDataText}">
+            <VBox id="mainVBox" class="sapUiSmallMargin">
+                <!-- Eingabe Bereich -->
+                <f:SimpleForm id="inputForm" editable="true" layout="ResponsiveGridLayout">
+                    <f:content>
+                        <Label id="labelSensorId" text="{i18n>sensorIdLabel}" />
+                        <Input id="inputSensorId" placeholder="z.B. S001" submit="onFetchData" />
+                        <Button id="btnFetch" text="{i18n>btnFetchText}" press="onFetchData" type="Emphasized" />
+                    </f:content>
+                </f:SimpleForm>
+
+                <!-- Gauge Anzeige -->
+                <VBox id="gaugeContainer" alignItems="Center" class="sapUiMediumMarginTop">
+                    <Title id="gaugeTitle" text="{sensorData>/header/bezeichnung}" level="H2" visible="{= !!${sensorData>/header/bezeichnung} }" />
+                    <mc:RadialMicroChart 
+                        id="tempGauge"
+                        size="L" 
+                        percentage="{sensorData>/latest/percentage}" 
+                        valueColor="{sensorData>/latest/color}"
+                        class="sapUiSmallMargin" />
+                    <Text id="currentTempText" text="{sensorData>/latest/value1} °C" class="tempValueText" />
+                </VBox>
+
+                <!-- Tabelle -->
+                <Table id="sensorTable" 
+                       items="{path: 'sensorData>/measurements', sorter: {path: 'reading_time', descending: true}}" 
+                       class="sapUiMediumMarginTop">
                     <headerToolbar>
-                        <Toolbar>
-                            <Title text="{i18n=sensorTableTitle}"/>
-                        </Toolbar>
+                        <OverflowToolbar id="otb">
+                            <Title id="tableTitle" text="{i18n>tableTitle}: {sensorData>/header/sensorid} - {sensorData>/header/bezeichnung}" />
+                        </OverflowToolbar>
                     </headerToolbar>
                     <columns>
-                        <Column>
-                            <Text text="{i18n=sensorIdColumn}"/>
-                        </Column>
-                        <Column>
-                            <Text text="{i18n=temperatureColumn}"/>
-                        </Column>
-                        <Column>
-                            <Text text="{i18n=humidityColumn}"/>
-                        </Column>
-                        <Column>
-                            <Text text="{i18n=dateTimeColumn}"/>
-                        </Column>
+                        <Column id="colTime"><Text text="{i18n>colTime}" /></Column>
+                        <Column id="colTemp"><Text text="{i18n>colTemp}" /></Column>
+                        <Column id="colHum"><Text text="{i18n>colHum}" /></Column>
                     </columns>
                     <items>
-                        <ColumnListItem>
+                        <ColumnListItem id="cli">
                             <cells>
-                                <Text text="{sensorId}"/>
-                                <Text text="{value1}"/>
-                                <Text text="{value2}"/>
-                                <Text text="{timestamp}"/>
+                                <Text text="{sensorData>reading_time}" />
+                                <ObjectNumber number="{sensorData>value1}" unit="°C" />
+                                <ObjectNumber number="{sensorData>value2}" unit="%" />
                             </cells>
                         </ColumnListItem>
                     </items>

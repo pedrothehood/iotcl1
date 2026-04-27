@@ -1,35 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
+<!  DOCTYPE html>
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sensordaten anzeigen</title>
-    <style>
-        html, body, body > div, #container, #container-uiarea {
-            height: 100%;
-        }
-    </style>
-    <script
-        id="sap-ui-bootstrap"
-        src="https://ui5.sap.com/1.147.1/resources/sap-ui-core.js"
-        data-sap-ui-theme="sap_horizon"
-        data-sap-ui-resource-roots='{
-            "showsensordata": "./"
-        }'
-        data-sap-ui-on-init="module:sap/ui/core/ComponentSupport"
-        data-sap-ui-compat-version="edge"
-        data-sap-ui-async="true"
-        data-sap-ui-frame-options="trusted"
-    ></script>
+
+    <title>Sensor Data Monitor</title>
+
+    <!-- Bootstrap: Laden der UI5 Hauptbibliothek -->
+    <script id="sap-ui-bootstrap"
+        src="https://openui5.org"
+        data-sap-ui-theme="sap_fiori_3"
+        data-sap-ui-libs="sap.m, sap.suite.ui.microchart, sap.ui.layout"
+        data-sap-ui-resourceroots='{"showsensordata": "./"}'
+        data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+        data-sap-ui-compatVersion="edge"
+        data-sap-ui-async="true">
+    </script>
 </head>
-<body class="sapUiBody sapUiSizeCompact" id="content">
-    <div
-        data-sap-ui-component
-        data-name="showsensordata"
-        data-id="container"
-        data-settings='{"id" : "showsensordata"}'
-        data-handle-validation="true"
-    ></div>
+
+<body class="sapUiBody" id="content">
+    <!-- Das ComponentContainer lädt die Component.js basierend auf dem Namen -->
+    <div data-sap-ui-component 
+         data-name="showsensordata" 
+         data-id="container" 
+         data-settings='{"id" : "showsensordata"}'
+         style="height: 100%">
+    </div>
 </body>
 </html>
