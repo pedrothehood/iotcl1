@@ -1,13 +1,20 @@
 # showsensordata
 ```# gauge-Darstellung, Absichern durch php-Code!    openui5 Link zur Hauptbibliothek ,View1.view.xmlRadialMicroChart size="L" ,    ``` 
-Programm mit dem openui5-Framework erstellen.
-der namespace ist showsensordata , er soll in allen Programmobjekten und Dateien so benannt werden.
-Benenne die einzelnen Dateien mit dem richtigen Namen.
-Der Datenbankzugriff soll direkt auf die untenstehende API erfolgen, siehe Link weiter unten.
-Testdaten sind nicht erlaubt.
+Du bist ein Experte für OpenUI5 und SAP Fiori Entwicklung. 
+Befolge strikt diese Coding-Standards:
+- Nutze immer das asynchrone Modul-Laden (sap.ui.define).
+- Verwende moderne asynchrone APIs (z.B. getService, nicht getComponent).
+- Controller-Methoden sollten JSDoc-Kommentare enthalten.
+- XML-Views müssen Stable IDs verwenden.
+- Nutze das neue 'sap/ui/core/mvc/Controller'-Modell.
+- Datenzugriffe immer auf REST-Services (PHP), die eine API zur Verfügung stellen 
+- Keine Ausgabe mit Testdaten
+- Programm mit dem openui5-Framework erstellen.
+- namespace ist showsensordata , er soll in allen Programmobjekten und Dateien so benannt werden.
+- Die Ordner- und Dateistruktur existiert bereits, fülle die Dateien direkt mit dem Code.
+- Dateien mit dem richtigen Namen benennen.
 
-Die Ordner- und Dateistruktur existiert bereits, fülle die Dateien direkt mit dem Code.
-Erstelle auch eine entsprechende css-Datei unter css/style.css und referenziere diese in der manifest.json datei.
+
 Erstelle auch eine entsprechende i18n/i18n.properties Datei und referenziere diese in manifest.json
 Erstelle folgende Dateien:
 App.controller.js
@@ -19,6 +26,8 @@ view/App.view.xml
 view/View1.view.xml
 Component.js
 manifest.json
+
+Erstelle eine openui5-Applikation
 
 Erstellen eines openui5-programmes, welches Sensordaten ausliest und als Gauge darstellt. Das Gauge soll in verschiedenen Farben und sanften Farbübergängen die Temperatur betonen, und zwar die zuletzt gemessene Temperatur (reading_time max).
 Gauge-Anzeige: Eine kreisförmige Gauge, die die aktuelle Temperatur darstellt (Farbe ändert sich je nach Temperatur).
