@@ -34,12 +34,14 @@ Ein Button sendet die Anfrage an folgenden Webservice, der die Daten im Json-For
 Lese die Daten von folgendem Rest-Service und verbinde ihn korrekt mit der App.
 http://localhost/projekte-01/iotph1/getsdata.php?api_key=tP3434AATdasd444&sensor_id=<sensorid>
 
-Lies die ensordaten über obigen Rest-Service aus und nften Farbübergängen die Temperatur betonen, und zwar die zuletzt gemessene Temperatur (reading_time max).
+Lies die Sensordaten über obigen Rest-Service aus und zwar die zuletzt gemessene Temperatur (reading_time max) zuerst.
+
 Gauge-Anzeige: Eine kreisförmige Gauge, die die aktuelle Temperatur darstellt (Farbe ändert sich je nach Temperatur).
 Nutze für die Erstellung der Gauge das Element  RadialMicroChart. Dafür musst Du in der View die Bibliothek sap.suite.ui.microchart einbinden.
 Der Wert der Temperatur-Anzeige soll von 10 - 40 Grad gehen, wobei 0-10 Grad Rot,33-40 Grad Rot, 11-18 Grad Gelb,25-32 Grad Gelb, und 19-24 Grad Grün anzuzeigen sind, Grösse des Gauge "L".
 
-Unterhalb soll eine Tabelle mit den Sensordaten, absteigend nach Datum - Zeit(reading_time) sortiert dargestellt werden mit den Spalten Temperatur,Luftfeuchtigkeit und Datum-Zeit. 
+Es soll eine Tabelle mit den Sensordaten, absteigend nach Datum - Zeit(reading_time) sortiert dargestellt werden mit den Spalten Temperatur(value1),Luftfeuchtigkeit(value2) und Datum-Zeit(reading_time).
+Die Spalten müssen die Bezeichnung "Temperatur","Luftfeuchtigkeit" und "Datum" beinhalten.
 
 Die Tabelle Sensorid gibt die Felder sensorid und bezeichnung zurück. Diese beiden Felder sollen den Titel der Tabelle bilden. 
 Die Tabelle Sensor gibt die eigentlichen Messdaten als Zeitreihe zurück:

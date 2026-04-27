@@ -1,6 +1,59 @@
-.tempValueText {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
-    margin-top: -10px;
+.sapUiSmallMargin {
+    margin: 0.5rem;
+}
+
+.sapUiSmallMarginTop {
+    margin-top: 0.5rem;
+}
+
+.sapUiSmallMarginBottom {
+    margin-bottom: 0.5rem;
+}
+
+.sapUiSmallMarginLeft {
+    margin-left: 0.5rem;
+}
+
+.sapUiSmallMarginRight {
+    margin-right: 0.5rem;
+}
+
+.sapUiMediumMargin {
+    margin: 1rem;
+}
+
+.sapUiMediumMarginTop {
+    margin-top: 1rem;
+}
+
+.sapUiMediumMarginBottom {
+    margin-bottom: 1rem;
+}
+
+.sapUiMediumMarginLeft {
+    margin-left: 1rem;
+}
+
+.sapUiMediumMarginRight {
+    margin-right: 1rem;
+}
+
+.sapUiLargeMargin {
+    margin: 2rem;
+}
+
+.sapUiLargeMarginTop {
+    margin-top: 2rem;
+}
+
+.sapUiLargeMarginBottom {
+    margin-bottom: 2rem;
+}
+
+.sapUiLargeMarginLeft {
+    margin-left: 2rem;
+}
+
+.sapUiLargeMarginRight {
+    margin-right: 2rem;
 }

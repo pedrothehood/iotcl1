@@ -2,58 +2,10 @@
     controllerName="showsensordata.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:mc="sap.suite.ui.microchart"
-    xmlns:f="sap.ui.layout.form"
-    xmlns:core="sap.ui.core">
-    <Page id="page" title="{i18n>appTitle}">
+    displayBlock="true">
+    <Page title="Sensor Data View">
         <content>
-            <VBox id="mainVBox" class="sapUiSmallMargin">
-                <!-- Eingabe Bereich -->
-                <f:SimpleForm id="inputForm" editable="true" layout="ResponsiveGridLayout">
-                    <f:content>
-                        <Label id="labelSensorId" text="{i18n>sensorIdLabel}" />
-                        <Input id="inputSensorId" placeholder="z.B. S001" submit="onFetchData" />
-                        <Button id="btnFetch" text="{i18n>btnFetchText}" press="onFetchData" type="Emphasized" />
-                    </f:content>
-                </f:SimpleForm>
-
-                <!-- Gauge Anzeige -->
-                <VBox id="gaugeContainer" alignItems="Center" class="sapUiMediumMarginTop">
-                    <Title id="gaugeTitle" text="{sensorData>/header/bezeichnung}" level="H2" visible="{= !!${sensorData>/header/bezeichnung} }" />
-                    <mc:RadialMicroChart 
-                        id="tempGauge"
-                        size="L" 
-                        percentage="{sensorData>/latest/percentage}" 
-                        valueColor="{sensorData>/latest/color}"
-                        class="sapUiSmallMargin" />
-                    <Text id="currentTempText" text="{sensorData>/latest/value1} °C" class="tempValueText" />
-                </VBox>
-
-                <!-- Tabelle -->
-                <Table id="sensorTable" 
-                       items="{path: 'sensorData>/measurements', sorter: {path: 'reading_time', descending: true}}" 
-                       class="sapUiMediumMarginTop">
-                    <headerToolbar>
-                        <OverflowToolbar id="otb">
-                            <Title id="tableTitle" text="{i18n>tableTitle}: {sensorData>/header/sensorid} - {sensorData>/header/bezeichnung}" />
-                        </OverflowToolbar>
-                    </headerToolbar>
-                    <columns>
-                        <Column id="colTime"><Text text="{i18n>colTime}" /></Column>
-                        <Column id="colTemp"><Text text="{i18n>colTemp}" /></Column>
-                        <Column id="colHum"><Text text="{i18n>colHum}" /></Column>
-                    </columns>
-                    <items>
-                        <ColumnListItem id="cli">
-                            <cells>
-                                <Text text="{sensorData>reading_time}" />
-                                <ObjectNumber number="{sensorData>value1}" unit="°C" />
-                                <ObjectNumber number="{sensorData>value2}" unit="%" />
-                            </cells>
-                        </ColumnListItem>
-                    </items>
-                </Table>
-            </VBox>
+            <Text text="Sensor Data View Content"/>
         </content>
     </Page>
 </mvc:View>

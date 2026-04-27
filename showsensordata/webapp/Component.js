@@ -1,38 +1,27 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
-    "showsensordata/model/models",
-    "sap/ui/Device"
-], function (UIComponent, models, Device) {
+    "sap/ui/Device",
+    "showsensordata/model/models"
+], function (UIComponent, Device, models) {
     "use strict";
 
     return UIComponent.extend("showsensordata.Component", {
+
         metadata: {
             manifest: "json"
         },
 
+        /**
+         * The component is initialized by UI5 automatically during the startup of the app and calls the init method once.
+         * @public
+         * @override
+         */
         init: function () {
-            // Call the base component's init function
+            // call the base component's init function
             UIComponent.prototype.init.apply(this, arguments);
 
-            // Set the device model
+            // set the device model
             this.setModel(models.createDeviceModel(), "device");
-        },
-
-        /**
-         * Diese Methode wird vom App.controller.js aufgerufen.
-         * Sie bestimmt, ob der Compact- oder Cozy-Modus (für Touch) genutzt wird.
-         * @public
-         * @returns {string} css class, either 'sapUiSizeCompact' or 'sapUiSizeCozy'
-         */
-        getContentDensityClass: function () {
-            if (!this._sContentDensityClass) {
-                if (!Device.support.touch) {
-                    this._sContentDensityClass = "sapUiSizeCompact";
-                } else {
-                    this._sContentDensityClass = "sapUiSizeCozy";
-                }
-            }
-            return this._sContentDensityClass;
         }
     });
 });

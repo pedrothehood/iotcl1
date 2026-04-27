@@ -1,59 +1,66 @@
 {
-  "_version": "1.32.0",
-  "sap.app": {
-    "id": "showsensordata",
-    "type": "application",
-    "i18n": "i18n/i18n.properties",
-    "title": "{{appTitle}}",
-    "description": "{{appDescription}}",
-    "applicationVersion": {
-      "version": "1.0.0"
-    }
-  },
-  "sap.ui": {
-    "technology": "UI5",
-    "deviceTypes": {
-      "desktop": true,
-      "tablet": true,
-      "phone": true
-    }
-  },
-  "sap.ui5": {
-    "rootView": {
-      "viewName": "showsensordata.view.App",
-      "type": "XML",
-      "async": true,
-      "id": "app"
-    },
-    "dependencies": {
-      "minUI5Version": "1.90.0",
-      "libs": {
-        "sap.ui.core": {},
-        "sap.m": {},
-        "sap.suite.ui.microchart": {}
-      }
-    },
-    "contentDensities": {
-      "compact": true,
-      "cozy": true
-    },
-    "models": {
-      "i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "settings": {
-          "bundleName": "showsensordata.i18n.i18n"
+    "_version": "1.1.0",
+    "sap.app": {
+        "id": "showsensordata",
+        "type": "application",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "dataSources": {
+            "sensorService": {
+                "uri": "http://localhost/projekte-01/iotph1/getsdata.php",
+                "type": "JSON",
+                "settings": {
+                    "header": {
+                        "api_key": "tP3434AATdasd444"
+                    }
+                }
+            }
         }
-      },
-      "sensorData": {
-        "type": "sap.ui.model.json.JSONModel"
-      }
     },
-    "resources": {
-      "css": [
-        {
-          "uri": "css/style.css"
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
         }
-      ]
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "showsensordata.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "app"
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "showsensordata.i18n.i18n"
+                }
+            }
+        },
+        "dependencies": {
+            "minUI5Version": "1.96.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.suite.ui.microchart": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
     }
-  }
 }

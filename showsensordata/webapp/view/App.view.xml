@@ -1,9 +1,54 @@
 <mvc:View
     controllerName="showsensordata.controller.App"
     xmlns:mvc="sap.ui.core.mvc"
-    displayBlock="true"
-    xmlns="sap.m">
-    <Shell id="shell">
-        <App id="idAppControl" />
-    </Shell>
+    xmlns="sap.m"
+    displayBlock="true">
+    <App id="app">
+        <pages>
+            <Page id="page" title="{i18n>appTitle}">
+                <content>
+                    <VBox class="sapUiSmallMargin">
+                        <HBox>
+                            <Label text="{i18n>sensorIdLabel}" width="120px"/>
+                            <Input id="sensorIdInput" width="200px" placeholder="{i18n>sensorIdPlaceholder}"/>
+                            <Button id="fetchButton" text="{i18n>fetchDataButton}" press="onFetchData" width="120px"/>
+                        </HBox>
+                        <Panel headerText="{i18n>gaugeTitle}" class="sapUiSmallMarginTop">
+                            <content>
+                                <HBox justifyContent="Center">
+                                    <RadialMeterChart id="temperatureChart" width="300px" height="300px"/>
+                                </HBox>
+                            </content>
+                        </Panel>
+                        <Panel headerText="{i18n>tableTitle}" class="sapUiSmallMarginTop">
+                            <content>
+                                <Table id="sensorTable" items="{sensorItems}" mode="None">
+                                    <columns>
+                                        <Column hAlign="Center">
+                                            <Text text="{i18n>temperatureColumn}"/>
+                                        </Column>
+                                        <Column hAlign="Center">
+                                            <Text text="{i18n>humidityColumn}"/>
+                                        </Column>
+                                        <Column hAlign="Center">
+                                            <Text text="{i18n>dateTimeColumn}"/>
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <Text text="{value1}"/>
+                                                <Text text="{value2}"/>
+                                                <Text text="{readingDate}"/>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </content>
+                        </Panel>
+                    </VBox>
+                </content>
+            </Page>
+        </pages>
+    </App>
 </mvc:View>
